@@ -15,17 +15,39 @@ class AgentAnalyst:
     def __init__(self, llm_client: Optional[LLMClient] = None) -> None:
         load_dotenv()
         self.llm_client = llm_client or LLMClient()
-
     @staticmethod
     def _clean_json_text(text: str) -> str:
-        text = re.sub(r"```json\s*", "", text)
-        text = re.sub(r"```\s*$", "", text, flags=re.MULTILINE)
-        text = text.strip()
+        """
+        Nettoie le texte retourné par le LLM pour obtenir un JSON valide.
+        Supprime les ```json et ``` ainsi que les caractères inutiles.
+        """
+        # Supprimer les blocs Markdown ```json ... ```
+        text = re.sub(r"```json\s*", "", text, flags=re.IGNORECASE)
+        text = re.sub(r"```", "", text)
+        
+        # Supprimer les retours à la ligne multiples et espaces inutiles
+        text = re.sub(r"\s*\n\s*", "\n", text)
+        text = re.sub(r"\s+", " ", text)
+
+        # Prendre uniquement le texte entre { et } le plus large possible
         start = text.find("{")
         end = text.rfind("}")
         if start != -1 and end != -1 and end > start:
             text = text[start : end + 1]
+
         return text.strip()
+
+    # @staticmethod
+    # def _clean_json_text(text: str) -> str:
+    #     text = re.sub(r"```json\s*", "", text)
+    #     text = re.sub(r"```\s*$", "", text, flags=re.MULTILINE)
+    #     text = text.strip()
+    #     start = text.find("{")
+    #     end = text.rfind("}")
+    #     if start != -1 and end != -1 and end > start:
+    #         text = text[start : end + 1]
+    #     return text.strip()
+    
 
     @staticmethod
     def _fix_json_syntax(text: str) -> str:

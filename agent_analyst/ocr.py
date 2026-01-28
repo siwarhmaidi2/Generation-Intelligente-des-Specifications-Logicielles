@@ -4,7 +4,8 @@ from pathlib import Path
 import pytesseract
 from PIL import Image
 
-
+pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
+os.environ["TESSDATA_PREFIX"] = r"C:\Program Files\Tesseract-OCR\tessdata"
 def configure_tesseract_cmd() -> None:
     cmd = os.getenv("TESSERACT_CMD", "").strip()
     if cmd:
