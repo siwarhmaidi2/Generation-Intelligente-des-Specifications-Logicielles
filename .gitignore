@@ -1,0 +1,12 @@
+# Environnements virtuels Python
+.venv/
+venv/
+env/
+
+# Dependencies (pip, etc.)
+*.pyc
+__pycache__/
+*.egg-info/
+
+# Environnements virtuels spécifiques
+/.venv
