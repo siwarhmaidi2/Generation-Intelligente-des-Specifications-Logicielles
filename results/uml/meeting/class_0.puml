@@ -1,0 +1,15 @@
+@startuml
+
+class Document {
+  id: String
+  titre: String
+  contenu: String
+  date_creation: Date
+  date_modification: Date
+}
+
+class Validation {
+  id: String
+  status: String
+  commentaire: String
+}

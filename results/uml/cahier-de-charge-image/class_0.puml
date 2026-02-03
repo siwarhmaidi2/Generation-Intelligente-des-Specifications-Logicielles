@@ -1,0 +1,17 @@
+@startuml
+
+class Utilisateur
+
++id: int
++nom: string
++email: string
+
+class Tâche
+
++id: int
++nom: string
++description: string
++catégorie: string
++statut: string
+
+@enduml
