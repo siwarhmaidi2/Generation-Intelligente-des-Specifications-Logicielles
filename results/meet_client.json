@@ -1,0 +1,80 @@
+{
+  "functional_requirements": [
+    {
+      "id": "FR1",
+      "description": "Gestion des tâches",
+      "type": "fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "FR2",
+      "description": "Création de tâches",
+      "type": "fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "FR3",
+      "description": "Attribution de tâche à une personne",
+      "type": "fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "FR4",
+      "description": "Gestion des priorités",
+      "type": "fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "FR5",
+      "description": "Gestion des statuts",
+      "type": "fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "FR6",
+      "description": "Gestion des commentaires",
+      "type": "fonctionnel",
+      "priority": "must"
+    }
+  ],
+  "non_functional_requirements": [
+    {
+      "id": "NFR1",
+      "description": "Sécurité",
+      "type": "non_fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "NFR2",
+      "description": "Performance",
+      "type": "non_fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "NFR3",
+      "description": "Intuitive interface utilisateur",
+      "type": "non_fonctionnel",
+      "priority": "must"
+    }
+  ],
+  "actors": [
+    {
+      "name": "Utilisateur final",
+      "description": "Personne responsable de la gestion des tâches"
+    }
+  ],
+  "business_rules": [
+    {
+      "id": "BR1",
+      "description": "Budget fixe",
+      "explicit": false
+    },
+    {
+      "id": "BR2",
+      "description": "Date de lancement dans trois mois",
+      "explicit": false
+    }
+  ],
+  "summary": "Gestion des tâches centralisée pour une équipe de 50 personnes avec un budget fixe, une date de lancement dans trois mois et la nécessité d'une version mobile.",
+  "metadata": {}
+}

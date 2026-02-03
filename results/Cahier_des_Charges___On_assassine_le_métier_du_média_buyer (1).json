@@ -1,0 +1,105 @@
+{
+  "functional_requirements": [
+    {
+      "id": "FR1",
+      "description": "Automatiser la création, la gestion et l'optimisation des campagnes publicitaires sur Meta Ads et Google Ads à l'aide de l'Intelligence Artificielle.",
+      "type": "fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "FR2",
+      "description": "Réduire le rôle manuel du media buyer.",
+      "type": "fonctionnel",
+      "priority": "should"
+    },
+    {
+      "id": "FR3",
+      "description": "Améliorer les performances publicitaires.",
+      "type": "fonctionnel",
+      "priority": "should"
+    },
+    {
+      "id": "FR4",
+      "description": "Générer automatiquement les contenus publicitaires.",
+      "type": "fonctionnel",
+      "priority": "could"
+    },
+    {
+      "id": "FR5",
+      "description": "Fournir un système de décision intelligent.",
+      "type": "fonctionnel",
+      "priority": "should"
+    },
+    {
+      "id": "FR6",
+      "description": "Service — Budget — Zone géographique Traitements : — Génération automatique de la structure de campagne — Sélection intelligente des audiences — Allocation dynamique du budget",
+      "type": "fonctionnel",
+      "priority": "must"
+    }
+  ],
+  "non_functional_requirements": [
+    {
+      "id": "NFR1",
+      "description": "Reduction des coûts élevés.",
+      "type": "non_fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "NFR2",
+      "description": "Réduction des erreurs humaines.",
+      "type": "non_fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "NFR3",
+      "description": "Important temps d'optimisation.",
+      "type": "non_fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "NFR4",
+      "description": "Besoins non fonctionnels — Sécurité et confidentialité des données — Scalabilité du système — Haute disponibilité — Temps de réponse réduit",
+      "type": "non_fonctionnel",
+      "priority": "must"
+    }
+  ],
+  "actors": [
+    {
+      "name": "Entrepreneurs",
+      "description": "Les personnes ou les entreprises qui investissent dans la publicité digitale."
+    },
+    {
+      "name": "PME",
+      "description": "Les petites et moyennes entreprises."
+    },
+    {
+      "name": "Agences marketing",
+      "description": "Les agences spécialisées dans la gestion de la publicité digitale."
+    },
+    {
+      "name": "Media buyers juniors",
+      "description": "Les jeunes médiabuyers qui effectuent les tâches traditionnelles du métier."
+    },
+    {
+      "name": "Utilisateur final",
+      "description": "Outils, technologies et frameworks 9.1 Frontend — React.js ou Next.js — Tailwind CSS — Chart.js / Recharts 9.2 Backend — Node.js (NestJS) ou Python (FastAPI) — API REST sécurisée 9.3 Intelligence Artificielle — OpenAI / DeepSeek / Claude (texte) — Stable Diffusion / DALL·E (images) — Machine Learning (Python) 9.4 APIs publicitaires — Meta Marketing API — Google Ads API 9.5 Base de données — PostgreSQL ou MongoDB"
+    }
+  ],
+  "business_rules": [
+    {
+      "id": "BR1",
+      "description": "La gestion manuelle des campagnes entraîne des coûts élevés, des erreurs humaines et un temps d'optimisation important.",
+      "explicit": false
+    },
+    {
+      "id": "BR2",
+      "description": "Contraintes — Limites des quotas API — Coût des services IA — Respect du RGPD",
+      "explicit": false
+    }
+  ],
+  "summary": "Automatiser la création, la gestion et l'optimisation des campagnes publicitaires sur Meta Ads et Google Ads à l'aide de l'Intelligence Artificielle. Service pour la génération automatique de campagnes publicitaires dans une zone géographique spécifiée, avec allocation dynamique du budget et sélection intelligente des audiences.",
+  "metadata": {
+    "chunked": "true"
+  },
+  "raw_model_output": null
+}

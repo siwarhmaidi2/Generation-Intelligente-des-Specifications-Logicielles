@@ -1,0 +1,73 @@
+{
+  "functional_requirements": [
+    {
+      "id": "FR1",
+      "description": "Création rapide d'une tâche en moins de 2 clics",
+      "type": "fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "FR2",
+      "description": "Stockage local uniquement (SQLite)",
+      "type": "fonctionnel",
+      "priority": "should"
+    },
+    {
+      "id": "FR3",
+      "description": "Création de 4 catégories maximum pour la tâche",
+      "type": "fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "FR4",
+      "description": "Statut : À fire/Encours/Terminé",
+      "type": "fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "FR5",
+      "description": "Notifications : Rappel unique partagée",
+      "type": "fonctionnel",
+      "priority": "should"
+    },
+    {
+      "id": "FR6",
+      "description": "Esport : Liste hebdomadaire au format texte",
+      "type": "fonctionnel",
+      "priority": "must"
+    }
+  ],
+  "non_functional_requirements": [
+    {
+      "id": "NFR1",
+      "description": "Performance : Lancement en moins de 3 secondes, résolution à 0.56",
+      "type": "non_fonctionnel",
+      "priority": "must"
+    }
+  ],
+  "actors": [
+    {
+      "name": "Utilisateur final",
+      "description": "Individuels utilisant l'application pour la gestion quotidienne des tâches"
+    }
+  ],
+  "business_rules": [
+    {
+      "id": "BR1",
+      "description": "Délai maximum : 6 semaines",
+      "explicit": false
+    },
+    {
+      "id": "BR2",
+      "description": "Budget maximum : 5000 €",
+      "explicit": false
+    },
+    {
+      "id": "BR3",
+      "description": "Compatibilité : iOS 13+ et Android 8*",
+      "explicit": false
+    }
+  ],
+  "summary": "Simplification de la gestion quotidienne des tâches pour les utilisateurs individuels via une application mobile hybride (Flutter) sur OS/Android, avec stockage local uniquement et performance optimisée.",
+  "metadata": {}
+}

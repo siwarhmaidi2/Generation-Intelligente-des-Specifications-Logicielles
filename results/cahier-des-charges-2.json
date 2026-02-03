@@ -1,0 +1,968 @@
+{
+  "functional_requirements": [
+    {
+      "id": "FR1",
+      "description": "Gestion des comptes utilisateurs",
+      "type": "fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "FR2",
+      "description": "Fonctionnalités avancées pour les conseillés",
+      "type": "fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "FR3",
+      "description": "Gestion de la base de connaissances",
+      "type": "fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "FR4",
+      "description": "Création de compte utilisateur",
+      "type": "fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "FR5",
+      "description": "Recherche avancée",
+      "type": "fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "FR6",
+      "description": "Agent virtuel",
+      "type": "fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "FR7",
+      "description": "Agent analytique",
+      "type": "fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "FR8",
+      "description": "Gestion des services",
+      "type": "fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "FR9",
+      "description": "Site d'information",
+      "type": "fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "FR10",
+      "description": "Création de compte usager",
+      "type": "fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "FR11",
+      "description": "Agent virtuel (chatbot)",
+      "type": "fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "FR12",
+      "description": "La page d'accueil doit présenter les informations générales sur la plateforme, ainsi que les actualités et les événements à venir.",
+      "type": "fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "FR13",
+      "description": "La page d'accueil doit être conçue de manière que les utilisateurs puissent facilement trouver les informations qu'ils recherchent.",
+      "type": "fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "FR14",
+      "description": "La page d'accueil doit comporter un logo et un slogan pour la plateforme.",
+      "type": "fonctionnel",
+      "priority": "should"
+    },
+    {
+      "id": "FR15",
+      "description": "La page d'accueil doit comporter un menu de navigation pour accéder aux différentes sections du site.",
+      "type": "fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "FR16",
+      "description": "La page d'accueil doit présenter une section d'actualités présentant les dernières nouvelles et les événements à venir.",
+      "type": "fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "FR17",
+      "description": "La page d'accueil doit présenter une section présentant les services et activités les plus populaires.",
+      "type": "fonctionnel",
+      "priority": "should"
+    },
+    {
+      "id": "FR18",
+      "description": "La page d'accueil doit comporter des liens vers les réseaux sociaux de la plateforme.",
+      "type": "fonctionnel",
+      "priority": "should"
+    },
+    {
+      "id": "FR19",
+      "description": "La page d'accueil doit comporter un pied de page contenant des informations de contact et des liens utiles.",
+      "type": "fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "FR20",
+      "description": "La création de compte permettra aux utilisateurs externes de bénéficier de fonctionnalités avancées.",
+      "type": "fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "FR21",
+      "description": "Lors de la création de compte, l'utilisateur devra fournir certaines informations personnelles telles que son nom, son adresse e-mail, son âge, son niveau d'étude, sa localisation, etc.",
+      "type": "fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "FR22",
+      "description": "Les informations seront utilisées pour personnaliser l'expérience utilisateur et fournir des recommandations adaptées à son profil.",
+      "type": "fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "FR23",
+      "description": "La création de compte permettra également de garantir la confidentialité et la sécurité des données personnelles de l'utilisateur.",
+      "type": "fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "FR24",
+      "description": "La plateforme devra être conforme aux réglementations en vigueur en matière de protection des données personnelles, telles que le RGPD.",
+      "type": "fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "FR25",
+      "description": "L'utilisateur devra donner son consentement explicite pour le traitement de ses données personnelles et pourra à tout moment accéder à ses données, les modifier ou les supprimer.",
+      "type": "fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "FR26",
+      "description": "La création de compte permettra à l'utilisateur de recevoir des notifications adaptées à son profil et ses préférences.",
+      "type": "fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "FR27",
+      "description": "Les notifications pourront être envoyées par e-mail ou par notification push, et pourront concerner par exemple les nouveaux services ou activités correspondant à ses centres d'intérêt, les événements à venir dans sa localisation, etc.",
+      "type": "fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "FR28",
+      "description": "Affichage d'un calendrier mensuel des événements à venir",
+      "type": "fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "FR29",
+      "description": "Recherche d'événements par mot-clé, date, lieu, catégorie, etc.",
+      "type": "fonctionnel",
+      "priority": "should"
+    },
+    {
+      "id": "FR30",
+      "description": "Inscription aux événements en un clic",
+      "type": "fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "FR31",
+      "description": "Envoi de rappels par e-mail ou notification push avant l'événement",
+      "type": "fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "FR32",
+      "description": "Ajout d'événements au calendrier personnel de l'utilisateur",
+      "type": "fonctionnel",
+      "priority": "should"
+    },
+    {
+      "id": "FR33",
+      "description": "Partage des événements sur les réseaux sociaux",
+      "type": "fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "FR34",
+      "description": "Notifications personnalisées informeront les utilisateurs des nouveaux services et activités qui correspondent à leurs intérêts et préférences.",
+      "type": "fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "FR35",
+      "description": "Intégration avec d'autres plateformes et services pertinents pour les jeunes, tels que les plateformes d'emploi, les plateformes éducatives, etc., permettra d'offrir une expérience utilisateur plus complète.",
+      "type": "fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "FR36",
+      "description": "Analyse des tendances aidera les administrateurs à identifier les tendances et les modèles dans l'utilisation de la plateforme et à prendre des décisions éclairées sur les services et les activités à proposer.",
+      "type": "fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "FR37",
+      "description": "Recherche avancée est une fonctionnalité clé de la plateforme, permettant aux utilisateurs de trouver facilement les services et les activités qui correspondent à leurs besoins.",
+      "type": "fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "FR38",
+      "description": "Affiner les résultats de recherche en fonction des préférences et des habitudes de l'utilisateur.",
+      "type": "fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "FR39",
+      "description": "Présenter les services dédiés aux utilisateurs en fonction de leur âge, de leur niveau d'études, de leur lieu de résidence, etc.",
+      "type": "fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "FR40",
+      "description": "Aider les utilisateurs à rechercher des services en fonction de critères tels que le type de service, la localisation, la disponibilité, etc.",
+      "type": "fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "FR41",
+      "description": "Répondre aux questions fréquentes des utilisateurs sur les services proposés, les modalités d'inscription, les tarifs, etc.",
+      "type": "fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "FR42",
+      "description": "Enrichir la base de données de la plateforme.",
+      "type": "fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "FR43",
+      "description": "Collecter et analyser des informations sur les utilisateurs, leurs préférences, commentaires et avis, et données statistiques.",
+      "type": "fonctionnel",
+      "priority": "should"
+    },
+    {
+      "id": "FR44",
+      "description": "Catalogue de services en fonction des catégories et des critères de recherche.",
+      "type": "fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "FR45",
+      "description": "Gestion des inscriptions et des demandes de participation.",
+      "type": "fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "FR46",
+      "description": "Suivi et évaluation des services et activités.",
+      "type": "fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "FR47",
+      "description": "Adaptation de fonctionnalités aux profils correspondants et accès unique par intervenant via web.",
+      "type": "fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "FR48",
+      "description": "Accès à la base de données et opérations d'administration restreintes aux utilisateurs identifiés.",
+      "type": "fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "FR49",
+      "description": "Gestion des habilitations pour assurer sécurité et traçabilité des accès.",
+      "type": "fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "FR50",
+      "description": "Gestion de délégation entre utilisateurs pour réalisation de certaines tâches.",
+      "type": "fonctionnel",
+      "priority": "should"
+    },
+    {
+      "id": "FR51",
+      "description": "La plateforme doit être dotée d'un Workflow intégré pour les approbations liées à la mise à jour des référentiels et la gestion des circuits de décisions.",
+      "type": "fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "FR52",
+      "description": "La plateforme doit être capable d'offrir un environnement multiprocessus, multitâches et multisites.",
+      "type": "fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "FR53",
+      "description": "La gestion de la traçabilité à travers un « journal d'exploitation » géré par le système doit permettre d'enregistrer un certain nombre d'événements et en particulier les connexions des usagers en traçant au minimum : • Code utilisateur. • Code terminal (adresse IP ou autre). • Date/heure de connexion. • Date/heure de déconnexion. • Actions effectuées.",
+      "type": "fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "FR54",
+      "description": "La plateforme doit être accessible en ligne.",
+      "type": "fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "FR55",
+      "description": "La plateforme doit permettre la création et le partage de contenu multimédia.",
+      "type": "fonctionnel",
+      "priority": "should"
+    },
+    {
+      "id": "FR56",
+      "description": "La plateforme est unique et paramétrable.",
+      "type": "fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "FR57",
+      "description": "La plateforme répond aux besoins de tous les processus de gestion du fond d'appui et de relance des PME.",
+      "type": "fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "FR58",
+      "description": "La plateforme est accessible par les différents intervenants grâce aux technologies internet.",
+      "type": "fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "FR59",
+      "description": "L'architecture proposée doit être indépendante de la plateforme matérielle et du système d'exploitation.",
+      "type": "fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "FR60",
+      "description": "L'identification des utilisateurs est principalement par login et mot de passe en plus de la signature électronique pour certains documents traités.",
+      "type": "fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "FR61",
+      "description": "Le prestataire devra adopter une livraison basée sur des images Docker afin de fluidifier la mise en production, les installations de patchs de correction lors de la phase maintenance.",
+      "type": "fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "FR62",
+      "description": "Le système devra pouvoir être utilisé en Arabe et en Français.",
+      "type": "fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "FR63",
+      "description": "Tous les composants logiciels de la plateforme doivent être couverts par une licence perpétuelle globale, sans limitation du nombre d'utilisateurs.",
+      "type": "fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "FR64",
+      "description": "La qualité du code source de l'application est importante pour la réception définitive du projet.",
+      "type": "fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "FR65",
+      "description": "Le prestataire devra démontrer une qualité de code source à travers des résultats d'audit de type Sonarcube et des pourcentages importants de couverture de tests unitaires, documentation, absence de duplication de code source, gestion des exceptions, maîtrise de la complexité du code.",
+      "type": "fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "FR66",
+      "description": "La fluidité de navigation et la rapidité d'accès aux informations recherchées sont prépondérantes.",
+      "type": "fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "FR67",
+      "description": "La plateforme doit être accessible depuis un navigateur web, le système de navigation doit rester intuitif et simple.",
+      "type": "fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "FR68",
+      "description": "La complexité du code.",
+      "type": "fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "FR69",
+      "description": "4.5.2 Exigences de performance",
+      "type": "fonctionnel",
+      "priority": "should"
+    },
+    {
+      "id": "FR70",
+      "description": "Types de transactions",
+      "type": "fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "FR71",
+      "description": "Compatibilité",
+      "type": "fonctionnel",
+      "priority": "should"
+    },
+    {
+      "id": "FR72",
+      "description": "Exigences de sécurité",
+      "type": "fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "FR73",
+      "description": "Initialisation des données",
+      "type": "fonctionnel",
+      "priority": "should"
+    },
+    {
+      "id": "FR74",
+      "description": "Sauvegarde et restauration",
+      "type": "fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "FR75",
+      "description": "Montée en version",
+      "type": "fonctionnel",
+      "priority": "should"
+    },
+    {
+      "id": "FR76",
+      "description": "La plateforme doit être dédiée aux services des jeunes.",
+      "type": "fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "FR77",
+      "description": "La plateforme doit être accessible via internet.",
+      "type": "fonctionnel",
+      "priority": "should"
+    },
+    {
+      "id": "FR78",
+      "description": "Contribuer à l'élaboration du cahier de recette fonctionnelle et technique permettant de vérifier l'adéquation de la plateforme aux spécifications fonctionnelles exprimées, ainsi que les jeux de tests associés.",
+      "type": "fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "FR79",
+      "description": "Assurer les tests unitaires, d'intégration et de performance.",
+      "type": "fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "FR80",
+      "description": "Elaboration de la stratégie et le plan de démarrage.",
+      "type": "fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "FR81",
+      "description": "Pilotage de la mise en service et le plan de démarrage.",
+      "type": "fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "FR82",
+      "description": "Mise en place d’une surveillance active du fonctionnement de la plateforme en vue d’assurer la détection rapide de tout incident au démarrage.",
+      "type": "fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "FR83",
+      "description": "Elaboration de la procédure de demande des droits d’accès et création des comptes et des droits d’accès.",
+      "type": "fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "FR84",
+      "description": "Correction de toutes les anomalies de fonctionnement",
+      "type": "fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "FR85",
+      "description": "Assistance téléphonique",
+      "type": "fonctionnel",
+      "priority": "should"
+    },
+    {
+      "id": "FR86",
+      "description": "Priorité de résolution en fonction des niveaux de gravité",
+      "type": "fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "FR87",
+      "description": "Architecture technique pour la mise en place d'une plateforme dédiée aux services des jeunes",
+      "type": "fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "FR88",
+      "description": "Scalabilité",
+      "type": "fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "FR89",
+      "description": "Sécurité",
+      "type": "fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "FR90",
+      "description": "Quantité",
+      "type": "fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "FR91",
+      "description": "Coût Total (HT)",
+      "type": "fonctionnel",
+      "priority": "should"
+    }
+  ],
+  "non_functional_requirements": [
+    {
+      "id": "NFR1",
+      "description": "Clarté des informations",
+      "type": "non_fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "NFR2",
+      "description": "Complétude des informations",
+      "type": "non_fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "NFR3",
+      "description": "Actualité des informations",
+      "type": "non_fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "NFR4",
+      "description": "La page d'accueil doit être accessible et fonctionnelle sur tous les dispositifs utilisés par les utilisateurs.",
+      "type": "non_fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "NFR5",
+      "description": "La page d'accueil doit être facilement navigable et comporter des éléments clairement visibles.",
+      "type": "non_fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "NFR6",
+      "description": "La page d'accueil doit être sécurisée et protéger les informations des utilisateurs.",
+      "type": "non_fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "NFR7",
+      "description": "La création de compte doit être conforme aux réglementations en vigueur en matière de protection des données personnelles, telles que le RGPD.",
+      "type": "non_fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "NFR8",
+      "description": "Gamification de la plateforme pour encourager l'exploration et l'utilisation des services proposés",
+      "type": "non_fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "NFR9",
+      "description": "Intégration avec les réseaux sociaux pour partage d'informations et connexion avec d'autres utilisateurs",
+      "type": "non_fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "NFR10",
+      "description": "Evaluation des services et activités par les utilisateurs à l'aide d'un système d'étoiles",
+      "type": "non_fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "NFR11",
+      "description": "Notification aux fournisseurs de services des nouveaux commentaires et évaluations",
+      "type": "non_fonctionnel",
+      "priority": "should"
+    },
+    {
+      "id": "NFR12",
+      "description": "Modération des commentaires pour éviter les abus et les spams",
+      "type": "non_fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "NFR13",
+      "description": "La fonctionnalité d'analyse des tendances aidera les administrateurs à identifier les tendances et les modèles dans l'utilisation de la plateforme et à prendre des décisions éclairées sur les services et les activités à proposer.",
+      "type": "non_fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "NFR14",
+      "description": "Faciliter l'accès aux services et répondre aux demandes des utilisateurs de manière rapide et efficace.",
+      "type": "non_fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "NFR15",
+      "description": "Améliorer la qualité des services proposés et répondre aux besoins des utilisateurs de manière plus précise.",
+      "type": "non_fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "NFR16",
+      "description": "Portail pour faciliter les échanges entre les différents acteurs impliqués dans le processus de suivi et d'accompagnement des jeunes.",
+      "type": "non_fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "NFR17",
+      "description": "Notification avec alertes, envoi de mail, SMS et système via API, configurable texte standard ou personnalisé, groupes destinataires, évènement de déclenchement.",
+      "type": "non_fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "NFR18",
+      "description": "Web responsive et s'adapte à tous les types d'écrans.",
+      "type": "non_fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "NFR19",
+      "description": "Privilégie le temps réel pour toutes les opérations de saisie, modification, suppression et consultation.",
+      "type": "non_fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "NFR20",
+      "description": "La plateforme doit être capable d'offrir un environnement multiprocessus, multitâches et multisites.",
+      "type": "non_fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "NFR21",
+      "description": "La solution d'authentification renforcée doit être adaptable et se baser , au minimum, sur les principes suivants : – Timeout en cas d'inactivité : Il est prévu la déconnexion automatique après un délai paramétrable pour ne pas bloquer les comptes des usagers. – Si le système ne reconnaît pas le couple (Identifiant / Mot de passe) ou que l'usager correspondant a été supprimé, un message bloquant est affiché et la tentative est enregistrée. – Les paramètres suivants seront configurables et modifiables par l'administrateur de l'application : • Nombre d'essais avant blocage du compte (3 au maximum par défaut). • Nombre minimum de derniers mots de passe ne pouvant pas être réutilisés (3 par défaut). • Délai maximum de validité des mots de passe (4 mois par défaut). • Nombre minimum de caractères pour les mots de passe (8 par défaut). – Caractères dans les mots de passe : • La solution permet d'exiger des mots de passe alphanumériques + spéciaux obligatoires. • Le Mot de passe de l'usager est crypté, au format SHA-2, et sauvegardé crypté dans la base de données. • Aucun compte générique de type Admin ou Guest ou autre (tous les comptes doivent être nominatifs). • Si l'usager a oublié son mot de passe, il a la possibilité de faire une demande, en ligne, de récupération de son mot de passe. • Si l'adresse mail n'est pas reconnue du système ou que l'usager correspondant a été supprimé, un message bloquant sera affiché.",
+      "type": "non_fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "NFR22",
+      "description": "La plateforme doit être sécurisée.",
+      "type": "non_fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "NFR23",
+      "description": "La plateforme doit être installée sur un seul site.",
+      "type": "non_fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "NFR24",
+      "description": "Tous les environnements de développements, de pré production (Staging) et de production seront séparés.",
+      "type": "non_fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "NFR25",
+      "description": "Toutes les opérations de compilation et de packaging seront réalisées avec l'outil de build.",
+      "type": "non_fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "NFR26",
+      "description": "4.5.3 Exigence d’évolutivité",
+      "type": "non_fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "NFR27",
+      "description": "4.5.4 Disponibilité",
+      "type": "non_fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "NFR28",
+      "description": "4.5.5 Gestion des pannes",
+      "type": "non_fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "NFR29",
+      "description": "4.5.6 Compatibilité",
+      "type": "non_fonctionnel",
+      "priority": "should"
+    },
+    {
+      "id": "NFR30",
+      "description": "Règles métier",
+      "type": "non_fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "NFR31",
+      "description": "La plateforme doit être disponible 24/7.",
+      "type": "non_fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "NFR32",
+      "description": "Assurer une assistance auprès des utilisateurs en charge de la recette métier.",
+      "type": "non_fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "NFR33",
+      "description": "Garantie de l’éditeur : Garantir la stabilité du produit dans sa version standard déployée.",
+      "type": "non_fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "NFR34",
+      "description": "Garantie de l’intégrateur : Garantir l’intégrité des adaptations faites à la demande du commanditaire.",
+      "type": "non_fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "NFR35",
+      "description": "Couverture de la garantie concernant : - La correction des bugs et déploiement correctif éditeur, - La correction de défauts de conformités de l’outil, - Les autres dysfonctionnements avérés.",
+      "type": "non_fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "NFR36",
+      "description": "Correction des erreurs bloquant le fonctionnement de la plateforme comme les anomalies non bloquantes",
+      "type": "non_fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "NFR37",
+      "description": "Durée du projet ne doit pas dépasser les 30 mois",
+      "type": "non_fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "NFR38",
+      "description": "Critère 3 : L’équipe projet Sous critère Poids Condition Note",
+      "type": "non_fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "NFR39",
+      "description": "Maintenance du système annuelle",
+      "type": "non_fonctionnel",
+      "priority": "must"
+    }
+  ],
+  "actors": [
+    {
+      "name": "Utilisateur final",
+      "description": "Citoyens et conseillés"
+    },
+    {
+      "name": "Administrateur",
+      "description": "Personne responsable de la gestion des comptes utilisateurs et de la base de connaissances"
+    },
+    {
+      "name": "Administrateur de la base de connaissance",
+      "description": "Les personnes en charge de la gestion de la base de données des services et des activités destinés aux jeunes."
+    },
+    {
+      "name": "Utilisateur technique",
+      "description": "Les personnes en charge de la gestion de la plateforme, de la sécurité, du CMS, des agents AI et de la base de données."
+    },
+    {
+      "name": "Citoyen",
+      "description": "Utilisateur final."
+    },
+    {
+      "name": "Directions de l'observatoire",
+      "description": "Administrateur."
+    },
+    {
+      "name": "Ministères partenaires - Maisons de jeunes",
+      "description": "Administrateur."
+    },
+    {
+      "name": "Formateur",
+      "description": "Les formateurs chargés d'assurer les tests unitaires, d'intégration et de performance, ainsi que la formation des administrateurs et des formateurs."
+    },
+    {
+      "name": "Titulaire du marché",
+      "description": "Le titulaire du marché qui fournit les livrables et assure le suivi et l’accompagnement des utilisateurs finaux."
+    },
+    {
+      "name": "Chef de projet",
+      "description": "Un Chef de projet"
+    },
+    {
+      "name": "Responsable infrastructure",
+      "description": "Un responsable infrastructure"
+    },
+    {
+      "name": "Responsable technique",
+      "description": "Un responsable technique"
+    }
+  ],
+  "business_rules": [
+    {
+      "id": "BR1",
+      "description": "Accès réservé pour fonctionnalités avancées",
+      "explicit": false
+    },
+    {
+      "id": "BR2",
+      "description": "La page d'accueil doit être accessible et fonctionnelle sur tous les dispositifs utilisés par les utilisateurs.",
+      "explicit": false
+    },
+    {
+      "id": "BR3",
+      "description": "La création de compte est une fonctionnalité importante de la plateforme, permettant aux utilisateurs externes de bénéficier de fonctionnalités avancées.",
+      "explicit": false
+    },
+    {
+      "id": "BR4",
+      "description": "Les fonctionnalités doivent être disponibles uniquement aux utilisateurs ayant créé un compte sur la plateforme",
+      "explicit": false
+    },
+    {
+      "id": "BR5",
+      "description": "La fonctionnalité d'analyse des tendances aidera les administrateurs à identifier les tendances et les modèles dans l'utilisation de la plateforme et à prendre des décisions éclairées sur les services et les activités à proposer.",
+      "explicit": false
+    },
+    {
+      "id": "BR6",
+      "description": "La fonctionnalité de recherche avancée devra être facilement accessible depuis la page d'accueil et depuis les différentes pages du site.",
+      "explicit": false
+    },
+    {
+      "id": "BR7",
+      "description": "La gestion des services doit permettre aux administrateurs de créer, mettre à jour et supprimer les fiches des services et activités proposés sur la plateforme.",
+      "explicit": false
+    },
+    {
+      "id": "BR8",
+      "description": "La gestion des services doit permettre aux administrateurs de gérer les inscriptions et les demandes de participation.",
+      "explicit": false
+    },
+    {
+      "id": "BR9",
+      "description": "Enregistrement et authentification des utilisateurs avec deux types d'utilisateurs : usagers internes et externes.",
+      "explicit": false
+    },
+    {
+      "id": "BR10",
+      "description": "La gestion des habilitations doit prévoir un module de gestion des droits, définir les rôles et permissions à attribuer pour chaque profil utilisateur, automatiser et propager les permissions via des modèles de droits par profil métiers et/ou appartenance à une structure (groupe utilisateurs), et permettre la délégation de droits.",
+      "explicit": false
+    },
+    {
+      "id": "BR11",
+      "description": "La plateforme doit être capable d'offrir un environnement multiprocessus, multitâches et multisites.",
+      "explicit": false
+    },
+    {
+      "id": "BR12",
+      "description": "Le système détecte les tentatives d'accès non autorisé et alerte immédiatement le gestionnaire du système. Par exemple : comptabilisation du nombre d'erreurs de mot de passe lié à un usager et déclenchement d'alerte si ce nombre dépasse un seuil préalablement fixé.",
+      "explicit": false
+    },
+    {
+      "id": "BR13",
+      "description": "La plateforme doit être accessible en ligne.",
+      "explicit": false
+    },
+    {
+      "id": "BR14",
+      "description": "La plateforme doit être accessible depuis un navigateur web.",
+      "explicit": false
+    },
+    {
+      "id": "BR15",
+      "description": "La plateforme doit être accessible depuis un navigateur web, le système de navigation doit rester intuitif et simple. Elle devra permettre à l'utilisateur d'accéder aux différentes fonctionnalités dans des temps de réponse minimes (le chargement des pages doit être rapide, de l’ordre de 2 secondes au maximum, dans un cadre d’utilisation normal). Une étude de performance et un tuning spécifique doivent être conduit par le soumissionnaire afin de dimensionner la plateforme matérielle nécessaire à fonctionnement optimal.",
+      "explicit": false
+    },
+    {
+      "id": "BR16",
+      "description": "La plateforme doit être conforme aux normes et aux standards usuels en matière d’outils de développement, de stockage et gestion des données et des formats d’échanges.",
+      "explicit": false
+    },
+    {
+      "id": "BR17",
+      "description": "La plateforme doit être accessible via internet.",
+      "explicit": false
+    },
+    {
+      "id": "BR18",
+      "description": "La plateforme doit être dédiée aux services des jeunes.",
+      "explicit": false
+    },
+    {
+      "id": "BR19",
+      "description": "Assurer un suivi et un accompagnement des utilisateurs finaux au quotidien pendant une durée limitée.",
+      "explicit": false
+    },
+    {
+      "id": "BR20",
+      "description": "Correction de toutes les anomalies de fonctionnement",
+      "explicit": false
+    },
+    {
+      "id": "BR21",
+      "description": "Assistance téléphonique",
+      "explicit": false
+    },
+    {
+      "id": "BR22",
+      "description": "Priorité de résolution en fonction des niveaux de gravité",
+      "explicit": false
+    },
+    {
+      "id": "BR23",
+      "description": "La société doit avoir une expérience spécifique dans le domaine de développement de plateformes web similaires et d'hébergements spécialisés",
+      "explicit": false
+    },
+    {
+      "id": "BR24",
+      "description": "Critère 3 : L’équipe projet Sous critère Poids Condition Note",
+      "explicit": false
+    },
+    {
+      "id": "BR25",
+      "description": "Coût total en HT de la formation",
+      "explicit": false
+    }
+  ],
+  "summary": "Échec du parsing JSON complet. Developper une plateforme dédiée aux jeunes pour la gestion des comptes utilisateurs. Plateforme métier pour les services aux jeunes : gestion des comptes, fonctionnalités avancées, gestion de la base de connaissances, création de compte utilisateur, recherche avancée, agent virtuel, agent analytique et gestion des services.",
+  "metadata": {
+    "chunked": "true"
+  },
+  "raw_model_output": null
+}

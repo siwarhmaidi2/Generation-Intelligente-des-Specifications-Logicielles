@@ -1,0 +1,324 @@
+{
+  "functional_requirements": [
+    {
+      "id": "FR1",
+      "description": "Create a service for observing the environment and agricultural systems in Auvergne.",
+      "type": "fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "FR2",
+      "description": "Provide an interconnected digital environment to store, manage, and secure environmental data measured on different instrumented devices in the Auvergne region.",
+      "type": "fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "FR3",
+      "description": "Facilitate organization and extraction of information for progressing in understanding environmental compartments, their impact on agro-ecosystems, and interrelations between them.",
+      "type": "fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "FR4",
+      "description": "Comprendre les compartiments environnementaux face au changement global.",
+      "type": "fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "FR5",
+      "description": "Conceptualiser les interrelations entre les compartiments pour comprendre, modéliser et prédire le comportement des agroécosystèmes.",
+      "type": "fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "FR6",
+      "description": "Le CEBA doit permettre le partage de fichiers volumineux tels que images, vidéos et audios.",
+      "type": "fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "FR7",
+      "description": "Le CEBA doit permettre le partage de données hétérogènes provenant de diverses sources.",
+      "type": "fonctionnel",
+      "priority": "should"
+    },
+    {
+      "id": "FR8",
+      "description": "Stockage des données hétérogènes dans une base SQL et une base NoSQL.",
+      "type": "fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "FR9",
+      "description": "La donnée sera directement stockée sur le serveur de fichiers.",
+      "type": "fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "FR10",
+      "description": "Il sera possible de publier les données en OpenData.",
+      "type": "fonctionnel",
+      "priority": "should"
+    },
+    {
+      "id": "FR11",
+      "description": "Permettre la réutilisation et la redistribution des données, incluant le mélange avec d'autres ensembles de données.",
+      "type": "fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "FR12",
+      "description": "Participation universelle : tout le monde doit être en mesure d'utiliser, de réutiliser et de redistribuer les données.",
+      "type": "fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "FR13",
+      "description": "Title",
+      "type": "fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "FR14",
+      "description": "Abstract",
+      "type": "fonctionnel",
+      "priority": "should"
+    },
+    {
+      "id": "FR15",
+      "description": "Temporal_extent_name",
+      "type": "fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "FR16",
+      "description": "Start_date",
+      "type": "fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "FR17",
+      "description": "End_date",
+      "type": "fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "FR18",
+      "description": "Spatial_extent_name",
+      "type": "fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "FR19",
+      "description": "Topic_categories",
+      "type": "fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "FR20",
+      "description": "Inspire_themes",
+      "type": "fonctionnel",
+      "priority": "should"
+    },
+    {
+      "id": "FR21",
+      "description": "Gemet_keywords",
+      "type": "fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "FR22",
+      "description": "Other_keywords",
+      "type": "fonctionnel",
+      "priority": "should"
+    },
+    {
+      "id": "FR23",
+      "description": "Md_contact",
+      "type": "fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "FR24",
+      "description": "Lineage",
+      "type": "fonctionnel",
+      "priority": "should"
+    },
+    {
+      "id": "FR25",
+      "description": "Use_condition",
+      "type": "fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "FR26",
+      "description": "Collecter des données sur des parcelles privées instrumentées.",
+      "type": "fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "FR27",
+      "description": "Definer un accès spécifique à ces données.",
+      "type": "fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "FR28",
+      "description": "Répondre aux questions quand, quoi, où.",
+      "type": "fonctionnel",
+      "priority": "should"
+    }
+  ],
+  "non_functional_requirements": [
+    {
+      "id": "NFR1",
+      "description": "Ensure data security.",
+      "type": "non_fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "NFR2",
+      "description": "Support scientific, cultural, and socio-economic problem-solving in Auvergne.",
+      "type": "non_fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "NFR3",
+      "description": "Pérenniser les données, que ce soit la donnée brute présente sur les serveurs de fichiers ou bien la donnée directement stockée en base.",
+      "type": "non_fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "NFR4",
+      "description": "Le CEBA doit permettre le partage de données privées.",
+      "type": "non_fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "NFR5",
+      "description": "Partage et publication des jeux de données via un catalogue de données.",
+      "type": "non_fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "NFR6",
+      "description": "La sécurité intervient sous deux aspects principaux : la donnée en elle et l'accès aux données.",
+      "type": "non_fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "NFR7",
+      "description": "Creative Commons : Creative Commons apportent un équilibre à l'intérieur du cadre traditionnel \"tous droits réservés\" créé par les lois sur le droit d'auteur.",
+      "type": "non_fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "NFR8",
+      "description": "Lineage",
+      "type": "non_fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "NFR9",
+      "description": "Use_condition",
+      "type": "non_fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "NFR10",
+      "description": "Satisfaire aux normes INSPIRE.",
+      "type": "non_fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "NFR11",
+      "description": "Partager, accéder et utiliser les données de manière libre et gratuite.",
+      "type": "non_fonctionnel",
+      "priority": "must"
+    }
+  ],
+  "actors": [
+    {
+      "name": "Users",
+      "description": "Individuals and organizations using the service for observing the environment and agricultural systems in Auvergne."
+    },
+    {
+      "name": "Cloud Environment",
+      "description": "The digital platform providing storage, management, and security of environmental data."
+    },
+    {
+      "name": "Utilisateur final",
+      "description": "Acteurs visés par le CEBA : Collectivité territoriale, agriculteurs, centres de recherches, entreprises, associations."
+    },
+    {
+      "name": "Propriétaire de données",
+      "description": "Les propriétaires des fichiers qui veulent partager leurs données."
+    },
+    {
+      "name": "Administrateur de base de données",
+      "description": "L'administrateur de base de données permettra de gérer la base de données et les rôles inclus dans celle-ci."
+    }
+  ],
+  "business_rules": [
+    {
+      "id": "BR1",
+      "description": "Data must be stored securely.",
+      "explicit": true
+    },
+    {
+      "id": "BR2",
+      "description": "The service must support scientific, cultural, and socio-economic problem-solving in Auvergne.",
+      "explicit": true
+    },
+    {
+      "id": "BR3",
+      "description": "Utiliser des logiciels libres pour mettre en place les bases de données.",
+      "explicit": false
+    },
+    {
+      "id": "BR4",
+      "description": "Le CEBA doit être capable de recevoir des données à partir de sources différentes.",
+      "explicit": false
+    },
+    {
+      "id": "BR5",
+      "description": "Le CEBA doit stocker des données hétérogènes.",
+      "explicit": false
+    },
+    {
+      "id": "BR6",
+      "description": "Les utilisateurs peuvent enlever le partage tout public d'un jeu de données.",
+      "explicit": false
+    },
+    {
+      "id": "BR7",
+      "description": "Les jeux de données possédant une DOI ne peuvent être supprimés.",
+      "explicit": false
+    },
+    {
+      "id": "BR8",
+      "description": "La directive INSPIRE apporte une liste de métadonnées très vaste à compléter lors de l'ajout d'un jeu de données au sein d'une plateforme de stockage.",
+      "explicit": false
+    },
+    {
+      "id": "BR9",
+      "description": "Quoi, quand et Où",
+      "explicit": false
+    },
+    {
+      "id": "BR10",
+      "description": "Les données sont collectées sur des parcelles privées instrumentées.",
+      "explicit": false
+    },
+    {
+      "id": "BR11",
+      "description": "Les jeux de données doivent répondre aux questions quand, quoi, où.",
+      "explicit": false
+    }
+  ],
+  "summary": "Create a digital platform for observing the environment and agricultural systems in Auvergne, providing secure storage, management, and extraction of environmental data. Le CEBA est un système d’information qui répond aux besoins listés dans le CR des interviews du CEBA et dans l’analyse des besoins du CEBA. Il doit mettre à disposition des acteurs un système d’information qui comprend les compartiments environnementaux face au changement global, conceptualise les interrelations entre les compartiments pour comprendre, modéliser et prédire le comportement des agroécosystèmes, pérennise les données, que ce soit la donnée brute présente sur les serveurs de fichiers ou bien la donnée directement stockée en base. Le CEBA est une initiative qui permet aux utilisateurs de partager leurs fichiers et données privées en un seul endroit.",
+  "metadata": {
+    "chunked": "true"
+  },
+  "raw_model_output": null
+}

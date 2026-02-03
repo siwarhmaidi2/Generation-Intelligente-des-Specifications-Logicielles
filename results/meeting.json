@@ -1,0 +1,120 @@
+{
+  "functional_requirements": [
+    {
+      "id": "FR1",
+      "description": "Tableau de bord pour administrateur",
+      "type": "fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "FR2",
+      "description": "Cycle de vie des documents",
+      "type": "fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "FR3",
+      "description": "Rapports de gestion des documents",
+      "type": "fonctionnel",
+      "priority": "should"
+    },
+    {
+      "id": "FR4",
+      "description": "Rapport de recherche avancée",
+      "type": "fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "FR5",
+      "description": "Documentation validation process",
+      "type": "fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "FR6",
+      "description": "Migration des données existantes",
+      "type": "fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "FR7",
+      "description": "Développement du premier loup de fonctionnalité",
+      "type": "fonctionnel",
+      "priority": "should"
+    }
+  ],
+  "non_functional_requirements": [
+    {
+      "id": "NFR1",
+      "description": "Chargement des pages principales en moins de 3 secondes",
+      "type": "non_fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "NFR2",
+      "description": "Authentification à deux facteurs pour administrateurs",
+      "type": "non_fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "NFR3",
+      "description": "Cryptage des données sensibles en transit et au repos",
+      "type": "non_fonctionnel",
+      "priority": "must"
+    },
+    {
+      "id": "NFR4",
+      "description": "Audits de sécurité réguliers",
+      "type": "non_fonctionnel",
+      "priority": "must"
+    }
+  ],
+  "actors": [
+    {
+      "name": "Superadministrateur",
+      "description": "Accès total à la plateforme"
+    },
+    {
+      "name": "Administrateur de compte client",
+      "description": "Accès aux données des clients respectifs"
+    },
+    {
+      "name": "Utilisateur final",
+      "description": "Limité à la consultation et création de certains types de documents"
+    },
+    {
+      "name": "Manager direct",
+      "description": "A manager who receives notifications for validation."
+    },
+    {
+      "name": "Comité de validation",
+      "description": "A committee that performs the final validation."
+    }
+  ],
+  "business_rules": [
+    {
+      "id": "BR1",
+      "description": "Tableau de bord pour administrateur",
+      "explicit": false
+    },
+    {
+      "id": "BR2",
+      "description": "Cycle de vie des documents",
+      "explicit": false
+    },
+    {
+      "id": "BR3",
+      "description": "Rapports de gestion des documents",
+      "explicit": false
+    },
+    {
+      "id": "BR4",
+      "description": "Rapport de recherche avancée",
+      "explicit": false
+    }
+  ],
+  "summary": "Besoin global : plateforme pour gestion des documents avec tableau de bord, cycle de vie des documents, rapports de gestion et recherche avancée. Priorités : must pour le chargement des pages principales, l'authentification à deux facteurs et le cryptage des données sensibles ; should pour les rapports de gestion. Documentation validation process. Migration des données existantes et développement du premier loup de fonctionnalité.",
+  "metadata": {
+    "chunked": "true"
+  }
+}
