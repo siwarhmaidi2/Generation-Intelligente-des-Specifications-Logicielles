@@ -164,3 +164,4 @@ def merge_analyses(analyses: Iterable[RequirementsAnalysis]) -> RequirementsAnal
     merged.summary = " ".join(summaries[:3]).strip()
     return merged
 
+

@@ -16,19 +16,19 @@
       "id": "FR3",
       "description": "Améliorer les performances publicitaires.",
       "type": "fonctionnel",
-      "priority": "should"
+      "priority": "must"
     },
     {
       "id": "FR4",
       "description": "Générer automatiquement les contenus publicitaires.",
       "type": "fonctionnel",
-      "priority": "could"
+      "priority": "should"
     },
     {
       "id": "FR5",
       "description": "Fournir un système de décision intelligent.",
       "type": "fonctionnel",
-      "priority": "should"
+      "priority": "must"
     },
     {
       "id": "FR6",
@@ -40,19 +40,19 @@
   "non_functional_requirements": [
     {
       "id": "NFR1",
-      "description": "Reduction des coûts élevés.",
+      "description": "Réduire les coûts élevés liés à la gestion manuelle des campagnes.",
       "type": "non_fonctionnel",
       "priority": "must"
     },
     {
       "id": "NFR2",
-      "description": "Réduction des erreurs humaines.",
+      "description": "Reduire les erreurs humaines liées à la gestion manuelle des campagnes.",
       "type": "non_fonctionnel",
       "priority": "must"
     },
     {
       "id": "NFR3",
-      "description": "Important temps d'optimisation.",
+      "description": "Réduire le temps d'optimisation important lié à la gestion manuelle des campagnes.",
       "type": "non_fonctionnel",
       "priority": "must"
     },
@@ -78,7 +78,7 @@
     },
     {
       "name": "Media buyers juniors",
-      "description": "Les jeunes médiabuyers qui effectuent les tâches traditionnelles du métier."
+      "description": "Les jeunes médiabuyers qui effectuent des tâches traditionnelles du métier."
     },
     {
       "name": "Utilisateur final",
@@ -88,7 +88,7 @@
   "business_rules": [
     {
       "id": "BR1",
-      "description": "La gestion manuelle des campagnes entraîne des coûts élevés, des erreurs humaines et un temps d'optimisation important.",
+      "description": "L'IA doit analyser les données en temps réel et prendre des décisions optimales sans intervention humaine directe.",
       "explicit": false
     },
     {
@@ -97,7 +97,7 @@
       "explicit": false
     }
   ],
-  "summary": "Automatiser la création, la gestion et l'optimisation des campagnes publicitaires sur Meta Ads et Google Ads à l'aide de l'Intelligence Artificielle. Service pour la génération automatique de campagnes publicitaires dans une zone géographique spécifiée, avec allocation dynamique du budget et sélection intelligente des audiences.",
+  "summary": "Automatiser le métier du média buyer en utilisant l'Intelligence Artificielle pour la création, la gestion et l'optimisation des campagnes publicitaires sur Meta Ads et Google Ads. Service pour la génération automatique de campagnes publicitaires dans une zone géographique spécifiée, avec sélection intelligente d'audiences et allocation dynamique du budget.",
   "metadata": {
     "chunked": "true"
   },

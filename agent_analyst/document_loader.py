@@ -60,3 +60,4 @@ def extract_text_from_document(
     return ocr_image(path, lang=ocr_lang)
 
 
+

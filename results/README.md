@@ -6,3 +6,4 @@ Les JSON générés sont enregistrés ici.
 - `results/<nom_de_l_image>.json`
 
 
+

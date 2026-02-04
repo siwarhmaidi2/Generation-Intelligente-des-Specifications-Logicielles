@@ -45,3 +45,4 @@ python analyze_images.py --lang fra
 - `--recursive` : parcourir les sous-dossiers
 
 
+

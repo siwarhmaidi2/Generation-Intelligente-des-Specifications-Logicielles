@@ -32,3 +32,4 @@ def looks_like_text_is_insufficient(text: str, min_chars: int = 400) -> bool:
     return len((text or "").strip()) < min_chars
 
 
+

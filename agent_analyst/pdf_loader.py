@@ -15,3 +15,4 @@ def extract_text_from_pdf(pdf_path: str | Path) -> str:
     return "\n\n".join(texts).strip()
 
 
+
