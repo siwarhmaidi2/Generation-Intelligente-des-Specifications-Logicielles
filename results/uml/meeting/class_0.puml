@@ -1,15 +1,31 @@
 @startuml
-
 class Document {
-  id: String
-  titre: String
-  contenu: String
-  date_creation: Date
-  date_modification: Date
+  id: string
+  title: string
+  content: string
+  status: string
+  created\_at: string
+  updated\_at: string
 }
-
-class Validation {
-  id: String
-  status: String
-  commentaire: String
+class Author {
+  id: string
+  name: string
+  email: string
+  role: string
 }
+class Manager {
+  id: string
+  name: string
+  email: string
+  role: string
+}
+class ValidationCommittee {
+  id: string
+  name: string
+  email: string
+  role: string
+}
+Document --> Author
+Author --> Manager
+Manager --> ValidationCommittee
+@enduml

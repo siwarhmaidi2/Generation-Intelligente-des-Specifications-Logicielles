@@ -10,3 +10,4 @@ python analyze_images.py --lang fra
 
 
 
+

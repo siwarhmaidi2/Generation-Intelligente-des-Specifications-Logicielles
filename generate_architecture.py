@@ -25,7 +25,16 @@ def main() -> None:
         print(f"❌ Aucun fichier JSON de requirements trouvé dans {input_dir}")
         return
 
-    agent = AgentArchitect()
+    from agent_analyst.llm_client import LLMClient
+    
+    # Initialisation du client LLM (Ollama par défaut, ou via .env)
+    try:
+        llm_client = LLMClient()
+    except Exception as e:
+        print(f"⚠️ Impossible d'initialiser le client LLM : {e}")
+        llm_client = None
+
+    agent = AgentArchitect(llm_client=llm_client)
     
     for json_file in json_files:
         out_file = input_dir / f"{json_file.stem}_architecture.json"

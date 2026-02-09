@@ -1,0 +1,138 @@
+{
+  "summary": "Architecture générée pour 3 entités principales avec UML, DB et stack technique.",
+  "entities": [
+    {
+      "name": "Task",
+      "attributes": [
+        "id",
+        "title",
+        "description",
+        "priority",
+        "status",
+        "comments"
+      ],
+      "relations": [
+        "AssignedTo",
+        "DependsOn"
+      ]
+    },
+    {
+      "name": "Person",
+      "attributes": [
+        "id",
+        "name",
+        "email",
+        "role"
+      ],
+      "relations": []
+    },
+    {
+      "name": "Role",
+      "attributes": [
+        "id",
+        "name"
+      ],
+      "relations": [
+        "Person"
+      ]
+    }
+  ],
+  "architecture": {
+    "pattern": "MVC",
+    "description": "Architecture basée sur entités détectées par LLM",
+    "diagram": {
+      "diagram_type": "use_case",
+      "content": "@startuml\nactor Utilisateur final\nusecase \"Gestion des tâches\" as FR1\nUtilisateur final --> FR1\nusecase \"Création de tâches\" as FR2\nUtilisateur final --> FR2\nusecase \"Attribution de tâche à une personne\" as FR3\nUtilisateur final --> FR3\nusecase \"Gestion des priorités\" as FR4\nUtilisateur final --> FR4\nusecase \"Gestion des statuts\" as FR5\nUtilisateur final --> FR5\nusecase \"Gestion des commentaires\" as FR6\nUtilisateur final --> FR6\n@enduml",
+      "description": "Diagramme Use Case"
+    }
+  },
+  "uml_diagrams": [
+    {
+      "diagram_type": "class",
+      "content": "@startuml\nclass Task {\n  id: string\n  title: string\n  description: string\n  priority: string\n  status: string\n  comments: string\n}\nclass Person {\n  id: string\n  name: string\n  email: string\n  role: string\n}\nclass Role {\n  id: string\n  name: string\n}\nTask --> Person\nPerson --> Role\n@enduml",
+      "description": "Diagramme de classes"
+    },
+    {
+      "diagram_type": "use_case",
+      "content": "@startuml\nactor Utilisateur final\nusecase \"Gestion des tâches\" as FR1\nUtilisateur final --> FR1\nusecase \"Création de tâches\" as FR2\nUtilisateur final --> FR2\nusecase \"Attribution de tâche à une personne\" as FR3\nUtilisateur final --> FR3\nusecase \"Gestion des priorités\" as FR4\nUtilisateur final --> FR4\nusecase \"Gestion des statuts\" as FR5\nUtilisateur final --> FR5\nusecase \"Gestion des commentaires\" as FR6\nUtilisateur final --> FR6\n@enduml",
+      "description": "Diagramme Use Case"
+    },
+    {
+      "diagram_type": "sequence",
+      "content": "@startuml\nUtilisateur final -> Task: Gestion des tâches\nTask --> Utilisateur final: response\n@enduml",
+      "description": "Diagramme de séquence"
+    }
+  ],
+  "database": {
+    "schema_type": "sql",
+    "content": "CREATE TABLE task (\n  id INT PRIMARY KEY,\n  title VARCHAR,\n  description VARCHAR,\n  priority VARCHAR,\n  status VARCHAR,\n  comments VARCHAR\n);\nCREATE TABLE person (\n  id INT PRIMARY KEY,\n  name VARCHAR,\n  email VARCHAR,\n  role VARCHAR\n);\nCREATE TABLE role (\n  id INT PRIMARY KEY,\n  name VARCHAR\n);\n",
+    "tables": [
+      {
+        "name": "task",
+        "columns": [
+          "id INT PRIMARY KEY",
+          "title VARCHAR",
+          "description VARCHAR",
+          "priority VARCHAR",
+          "status VARCHAR",
+          "comments VARCHAR"
+        ]
+      },
+      {
+        "name": "person",
+        "columns": [
+          "id INT PRIMARY KEY",
+          "name VARCHAR",
+          "email VARCHAR",
+          "role VARCHAR"
+        ]
+      },
+      {
+        "name": "role",
+        "columns": [
+          "id INT PRIMARY KEY",
+          "name VARCHAR"
+        ]
+      }
+    ]
+  },
+  "dependencies": [
+    {
+      "module_from": "Task",
+      "module_to": "Person",
+      "description": "Dépendance détectée"
+    },
+    {
+      "module_from": "Person",
+      "module_to": "Role",
+      "description": "Dépendance détectée"
+    }
+  ],
+  "tech_stack": {
+    "frontend": [
+      "React",
+      "TypeScript"
+    ],
+    "backend": [
+      "FastAPI",
+      "Python"
+    ],
+    "database": [
+      "PostgreSQL"
+    ],
+    "infrastructure": [
+      "Docker",
+      "AWS"
+    ],
+    "justification": "Stack technique générée automatiquement"
+  },
+  "consistency": {
+    "is_consistent": true,
+    "issues": []
+  },
+  "complexity": {
+    "technical_score": 7,
+    "dev_days_estimate": 30,
+    "reasoning": "Complexité moyenne"
+  }
+}

@@ -1,6 +1,0 @@
-@startuml
-
-sequence Validation_document {
-  Document->Validation
-  Validation->Comite_validation
-}

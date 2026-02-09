@@ -1,0 +1,4 @@
+@startuml
+Superadministrateur -> Document: Tableau de bord pour administrateur
+Document --> Superadministrateur: response
+@enduml

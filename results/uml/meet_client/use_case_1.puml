@@ -1,0 +1,15 @@
+@startuml
+actor Utilisateur final
+usecase "Gestion des tâches" as FR1
+Utilisateur final --> FR1
+usecase "Création de tâches" as FR2
+Utilisateur final --> FR2
+usecase "Attribution de tâche à une personne" as FR3
+Utilisateur final --> FR3
+usecase "Gestion des priorités" as FR4
+Utilisateur final --> FR4
+usecase "Gestion des statuts" as FR5
+Utilisateur final --> FR5
+usecase "Gestion des commentaires" as FR6
+Utilisateur final --> FR6
+@enduml

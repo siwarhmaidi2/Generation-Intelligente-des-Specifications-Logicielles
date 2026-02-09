@@ -1,0 +1,22 @@
+@startuml
+class Task {
+  id: string
+  title: string
+  description: string
+  priority: string
+  status: string
+  comments: string
+}
+class Person {
+  id: string
+  name: string
+  email: string
+  role: string
+}
+class Role {
+  id: string
+  name: string
+}
+Task --> Person
+Person --> Role
+@enduml

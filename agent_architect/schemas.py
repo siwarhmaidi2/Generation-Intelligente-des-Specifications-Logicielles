@@ -52,8 +52,6 @@ class DatabaseSchema(BaseModel):
     @field_validator('schema_type', mode='before')
     @classmethod
     def normalize_type(cls, v):
-        # Si le modèle renvoie 'type' au lieu de 'schema_type', on le gère via un root validator ou ici si possible
-        # Mais ici c'est field_validator. On suppose que l'aliasing est géré avant.
         if hasattr(v, 'lower'):
             return v.lower()
         return v
@@ -61,7 +59,6 @@ class DatabaseSchema(BaseModel):
     @field_validator('tables', mode='before')
     @classmethod
     def validate_tables(cls, v):
-        # Si vide ou erreur, retourner liste vide
         if not isinstance(v, list):
             return []
         return v
@@ -96,9 +93,6 @@ class ModuleDependency(BaseModel):
     module_from: str = Field(alias="module_from")
     module_to: str = Field(alias="module_to")
     description: Optional[str] = None
-    
-    # Validation flexible pour accepter "module" / "target" ou autre si besoin, 
-    # mais le plus simple est de forcer le mapping avant validation.
 
 class ConsistencyCheck(BaseModel):
     is_consistent: bool = Field(..., description="True/False")
@@ -113,12 +107,10 @@ class ComplexityEstimation(BaseModel):
     @classmethod
     def parse_int(cls, v):
         if isinstance(v, str):
-            # Extraire les chiffres
             import re
             nums = re.findall(r'\d+', v)
             if nums:
                 return int(nums[0])
-            # Si "Moyen" ou autre texte, mapper arbitrairement ou erreur
             mapping = {"faible": 3, "low": 3, "moyen": 5, "medium": 5, "fort": 8, "high": 8, "élevé": 8}
             val = v.lower()
             for k, score in mapping.items():
@@ -170,7 +162,6 @@ class ArchitecturalAnalysis(BaseModel):
                         'module_to': 'Unknown', 
                         'description': d.get('description', '')
                     })
-                # Essayer de récupérer d'autres formats
                 elif 'source' in d and 'target' in d:
                      new_deps.append({
                         'module_from': d['source'],

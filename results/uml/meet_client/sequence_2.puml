@@ -1,0 +1,4 @@
+@startuml
+Utilisateur final -> Task: Gestion des tâches
+Task --> Utilisateur final: response
+@enduml

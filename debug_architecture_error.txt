@@ -1,0 +1,77 @@
+{
+  "summary": "Analyse de l'architecture pour une plateforme de gestion des documents avec tableau de bord, cycle de vie des documents, rapports de gestion et recherche avancée. Priorités : must pour le chargement des pages principales, l'authentification à deux facteurs et le cryptage des données sensibles ; should pour les rapports de gestion. Documentation validation process. Migration des données existantes et développement du premier loup de fonctionnalité.",
+  "entities": [
+    {
+      "name": "Superadministrateur",
+      "attributes": ["id", "nom", "email"],
+      "relations": ["commande"]
+    },
+    {
+      "name": "Administrateur de compte client",
+      "attributes": ["id", "nom", "email"],
+      "relations": ["commande"]
+    },
+    {
+      "name": "Utilisateur final",
+      "attributes": ["id", "nom", "email"],
+      "relations": ["commande"]
+    },
+    {
+      "name": "Manager direct",
+      "attributes": ["id", "nom", "email"],
+      "relations": ["commande"]
+    },
+    {
+      "name": "Comité de validation",
+      "attributes": ["id", "nom", "email"],
+      "relations": ["commande"]
+    },
+    {
+      "name": "Document",
+      "attributes": ["id", "titre", "type", "date_creation", "date_modification", "etat"],
+      "relations": ["commande"]
+    },
+    {
+      "name": "Tableau de bord",
+      "attributes": ["id", "nom", "description", "type"],
+      "relations": ["commande"]
+    },
+    {
+      "name": "Cycle de vie des documents",
+      "attributes": ["id", "nom", "description", "type"],
+      "relations": ["commande"]
+    },
+    {
+      "name": "Rapport de gestion des documents",
+      "attributes": ["id", "nom", "description", "type"],
+      "relations": ["commande"]
+    },
+    {
+      "name": "Rapport de recherche avancée",
+      "attributes": ["id", "nom", "description", "type"],
+      "relations": ["commande"]
+    },
+    {
+      "name": "Documentation validation process",
+      "attributes": ["id", "nom", "description", "type"],
+      "relations": ["commande"]
+    },
+    {
+      "name": "Migration des données existantes",
+      "attributes": ["id", "nom", "description", "type"],
+      "relations": ["commande"]
+    }
+  ],
+  "architecture": {
+    "pattern": "MVC",
+    "description": "Utilisation du pattern MVC pour la plateforme de gestion des documents. Le module Frontend est responsable de l'interface utilisateur, le module Backend gère les fonctionnalités et le module Database stocke les données.",
+    "diagram": {
+      "diagram_type": "use_case",
+      "content": "@startuml\n\nSuperadministrateur->>Administrateur de compte client: Commande\nAdministrateur de compte client->>Manager direct: Commande\nManager direct->>Comité de validation: Commande\n\nSuperadministrateur->>Tableau de bord: Commande\nTableau de bord->>Utilisateur final: Affichage\n\nSuperadministrateur->>Cycle de vie des documents: Commande\nCycle de vie des documents->>Utilisateur final: Affichage\n\nSuperadministrateur->>Rapport de gestion des documents: Commande\nRapport de gestion des documents->>Utilisateur final: Affichage\n\nSuperadministrateur->>Rapport de recherche avancée: Commande\nRapport de recherche avancée->>Utilisateur final: Affichage\n\nSuperadministrateur->>Documentation validation process: Commande\nDocumentation validation process->>Utilisateur final: Affichage\n\nSuperadministrateur->>Migration des données existantes: Commande\nMigration des données existantes->>Utilisateur final: Affichage\n\nManager direct->>Comité de validation: Notification\nComité de validation->>Manager direct: Validation\n\nTableau de bord->>Rapport de gestion des documents: Commande\nRapport de gestion des documents->>Tableau de bord: Affichage\n\nTableau de bord->>Rapport de recherche avancée: Commande\nRapport de recherche avancée->>Tableau de bord: Affichage\n\nDocument->>Tableau de bord: Affichage\n\nDocument->>Cycle de vie des documents: Commande\nCycle de vie des documents->>Document: Modification\n\nDocument->>Rapport de gestion des documents: Commande\nRapport de gestion des documents->>Document: Validation\n\nDocument->>Rapport de recherche avancée: Commande\nRapport de recherche avancée->>Document: Affichage\n\nDocument->>Documentation validation process: Commande\nDocumentation validation process->>Document: Validation\n\nMigration des données existantes->>Document: Migration\n\n\n@enduml",
+      "description": "UseCase complet"
+    }
+  },
+  "uml_diagrams": [
+    {
+      "diagram_type": "class",
+      "content": "@startuml\n\nSuperadministrateur [1]--[*] Document\nAdministrateur de compte client [1]--[*] Document\nManager direct [1]--[*] Document\nComité de validation [1]--[*] Document\nTableau de bord [1]--[*] Document\nCycle de vie des documents [1]--[*] Document\nRapport de gestion des documents [1]--[*] Document\nRapport de recherche avancée [1]--[*] Document\nDocumentation validation process [1]--[*] Document\nMigration des données existantes [1]--[*] Document\n\nSuperadministrateur [1]--[*] Administrateur de compte client\nAdministrateur de compte client [1]--[*] Manager direct\nManager direct [1]--[*] Comité de validation\nTableau de bord [1]--[*] Utilisateur final\nCycle de vie des documents [1]--[*] Utilisateur final\nRapport de gestion des documents [1]--* Utilisateur final\nRapport de recherche avancée [1]--* Utilisateur final\nDocumentation validation process [1]--* Utilisateur final\nMigration des données existantes [1]--* Utilisateur final\n\nSuperadministrateur [1]--[*] Manager direct\nManager direct [1]--* Comité de validation\nTableau de bord [1]--* Rapport de gestion des documents\nRapport de gestion des documents [1]--* Tableau de bord\nRapport de recherche avancée [1]--* Tableau de bord\nDocument [1]--* Tableau de bord\nCycle de vie des documents [1]--* Document\nRapport de gestion des documents [1]--* Cycle de vie des documents\nRapport de recherche avancée [1]--* Cycle de vie des documents\nDocumentation validation process [1]--* Cycle de vie des documents\nMigration des données existantes [1]--* Cycle de vie des documents\n\nSuperadministrateur [1]--[*] Documentation validation process\nManager direct [1]--[*] Documentation validation process\nComité de validation [1]--[*] Documentation validation process\nTableau de bord [1]--[*] Documentation validation process\nCycle de vie des documents [1]--[*] Documentation validation process\nRapport de gestion des documents [1]--[*] Documentation validation process\nRapport de recherche avancée [1]--[*] Documentation validation process\nDocument [1]--[*] Documentation validation process\n\nSuperadministrateur [1]--[*] Migration des données existantes\nManager direct [1]--[*] Migration des données existantes\nComité de validation [1]--[*] Migration des données existantes\nTableau de bord [1]--[*] Migration des données existantes\nCycle de vie des documents [1]--[*] Migration des données existantes\nRapport de gestion des documents [1]--[*] Migration des données existantes\nRapport de recherche avancée [1]--[*] Migration des données existantes\nDocument [1]--[*] Migration des données existantes\n\nSuperadministrateur [1]--[*] Frontend\nAdministrateur de compte client [1]--[*] Frontend\nManager direct [1]--[*] Frontend\nComité de validation [1]--[*] Frontend\nTableau de bord [1]--[*] Backend\nCycle de vie des documents [1]--[*] Backend\nRapport de gestion des documents [1]--[*] Backend\nRapport de recherche avancée [1]--[*] Backend\nDocumentation validation process [1]--[*] Backend\nMigration des données existantes [1]--[*] Backend\n\nSuperadministrateur [1]--[*] Document\nAdministrateur de compte client [1]--[*] Document\nManager direct [1]--[*] Document\nComité de validation [1]--[*] Document\nTableau de bord [1]--[*] Document\nCycle de vie des documents [1]--[*] Document\nRapport de gestion des documents [1]--* Document\nRapport de recherche avancée [1]--* Document\nDocumentation validation process [1]--* Document\nMigration des données existantes [1]--* Document\n\nSuperadministrateur [1]--[*] Frontend\nAdministrateur de compte client [1]--[*] Frontend\nManager direct [1]--[*] Frontend\nComité de validation [1]--[*] Frontend\nTableau de bord [1]--[*] Backend\nCycle de vie des documents [1]--[*] Backend\nRapport de gestion des documents [1]--* Backend\nRapport de recherche avancée [1]--* Backend\nDocument [1]--[*] Backend\n\nSuperadministrateur [1]--[*] Document\nAdministrateur de compte client [1]--[*] Manager direct\nManager direct [1]--[*] Comité de validation\nTableau de bord [1]--[*] Utilisateur final\nCycle de vie des documents [1]--[*] Utilisateur final\nRapport de gestion des documents [1]--* Utilisateur final\nRapport de recherche avancée [1]--* Utilisateur final\nDocumentation validation process [1]--* Utilisateur final\nMigration des données existantes [1]--* Utilisateur final\n\nSuperadministrateur [1]--[*] Documentation validation process\nManager direct [1]--[*] Documentation validation process\nComité de validation [1]--[*] Documentation validation process\nTableau de bord [1]--[*] Documentation validation process\nCycle de vie des documents [1]--[*] Documentation validation process\nRapport de gestion des documents [1]--* Documentation validation process\nRapport de recherche avancée [1]--* Documentation validation process\nDocument [1]--[*] Documentation validation process\n\nSuperadministrateur [1]--[*] Frontend\nAdministrateur de compte client [1]--[*] Frontend\nManager direct [1]--[*] Frontend\nComité de validation [1]--[*] Frontend\nTableau de bord [1]--[*] Backend\nCycle de vie des documents [1]--[*] Backend\nRapport de gestion des documents [1]--* Backend\nRapport de recherche avancée [1]--* Backend\nDocumentation validation process [1]--* Backend\nMigration des données existantes [1]--* Backend\n\nSuperadministrateur [1]--[*] Document\nAdministrateur de compte client [1]--[*] Manager direct\nManager direct [1]--[*] Comité de validation\nTableau de bord [1]--[*] Utilisateur final\nCycle de vie des documents [1]--[*] Utilisateur final\nRapport de gestion des documents [1]--* Utilisateur final\nRapport de recherche avancée [1]--* Utilisateur final\nDocumentation validation process [1]--* Utilisateur final\nMigration des données existantes [1]--* Utilisateur final\n\nSuperadministrateur [1]--[*] Documentation validation process\nManager direct [1]--[*] Documentation validation process\nComité de validation [1]--[*] Documentation validation process\nTableau de bord [1]--[*] Documentation validation process\nCycle de vie des documents [1]--[*] Documentation validation process\nRapport de gestion des documents [1]--* Documentation validation process\nRapport de recherche avancée [1]--* Documentation validation process\nDocument [1]--[*] Documentation validation process\n\nSuperadministrateur [1]--[*] Frontend\nAdministrateur de compte client [1]--[*] Frontend\nManager direct [1]--[*] Frontend\nComité de validation [1]--[*] Frontend\nTableau de bord [1]--[*] Backend\nCycle de vie des documents [1]--[*] Backend\nRapport de gestion des documents [1]--* Backend\nRapport de recherche avancée [1]--* Backend\nDocumentation validation process [1]--* Backend\nMigration des données existantes [1]--* Backend\n\nSuperadministrateur [1]--[*] Document\nAdministrateur de compte client [1]--[*] Manager direct\nManager direct [1]--[*] Comité de validation\nTableau de bord [1]--[*] Utilisateur final\nCycle de vie des documents [1]--[*] Utilisateur final\nRapport de gestion des documents [1]--* Utilisateur final\nRapport de recherche avancée [1]--* Utilisateur final\nDocumentation validation process [1]--* Utilisateur final\nMigration des données existantes [1]--* Utilisateur final\n\nSuperadministrateur [1]--[*] Documentation validation process\nManager direct [1]--[*] Documentation validation process\nComité de validation [1]--[*] Documentation validation process\nTableau de bord [1]--[*] Documentation validation process\nCycle de vie des documents [1]--[*] Documentation validation process\nRapport de gestion des documents [1]--* Documentation validation process\nRapport de recherche avancée [1]--* Documentation validation process\nDocument [1]--[*] Documentation validation process\n\nSuperadministrateur [1]--[*] Frontend\nAdministrateur de compte client [1]--[*] Frontend\nManager direct [1]--[*] Frontend\nComité de validation [1]--[*] Frontend\nTableau de bord [1]--[*] Backend\nCycle de vie des documents [1]--[*] Backend\nRapport de gestion des documents [1]--* Backend\nRapport de recherche avancée [1]--* Backend\nDocumentation validation process [1]--* Backend\nMigration des données existantes [1]--* Backend\n\nSuperadministrateur [1]--[*] Document\nAdministrateur de compte client [1]--[*] Manager direct\nManager direct [1]--[*] Comité de validation\nTableau de bord [1]--[*] Utilisateur final\nCycle de vie des documents [1]--[*] Utilisateur final\nRapport de gestion des documents [1]--* Utilisateur final\nRapport de recherche avancée [1]--* Utilisateur final\nDocumentation validation process

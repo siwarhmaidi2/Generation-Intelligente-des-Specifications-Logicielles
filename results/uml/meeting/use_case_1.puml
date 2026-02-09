@@ -1,0 +1,49 @@
+@startuml
+actor Superadministrateur
+actor Administrateur de compte client
+actor Utilisateur final
+actor Manager direct
+actor Comité de validation
+usecase "Tableau de bord pour administrateur" as FR1
+Superadministrateur --> FR1
+Administrateur de compte client --> FR1
+Utilisateur final --> FR1
+Manager direct --> FR1
+Comité de validation --> FR1
+usecase "Cycle de vie des documents" as FR2
+Superadministrateur --> FR2
+Administrateur de compte client --> FR2
+Utilisateur final --> FR2
+Manager direct --> FR2
+Comité de validation --> FR2
+usecase "Rapports de gestion des documents" as FR3
+Superadministrateur --> FR3
+Administrateur de compte client --> FR3
+Utilisateur final --> FR3
+Manager direct --> FR3
+Comité de validation --> FR3
+usecase "Rapport de recherche avancée" as FR4
+Superadministrateur --> FR4
+Administrateur de compte client --> FR4
+Utilisateur final --> FR4
+Manager direct --> FR4
+Comité de validation --> FR4
+usecase "Documentation validation process" as FR5
+Superadministrateur --> FR5
+Administrateur de compte client --> FR5
+Utilisateur final --> FR5
+Manager direct --> FR5
+Comité de validation --> FR5
+usecase "Migration des données existantes" as FR6
+Superadministrateur --> FR6
+Administrateur de compte client --> FR6
+Utilisateur final --> FR6
+Manager direct --> FR6
+Comité de validation --> FR6
+usecase "Développement du premier loup de fonctionnalité" as FR7
+Superadministrateur --> FR7
+Administrateur de compte client --> FR7
+Utilisateur final --> FR7
+Manager direct --> FR7
+Comité de validation --> FR7
+@enduml
