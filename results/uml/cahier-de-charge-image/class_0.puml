@@ -1,17 +1,13 @@
 @startuml
-
-class Utilisateur
-
-+id: int
-+nom: string
-+email: string
-
-class Tâche
-
-+id: int
-+nom: string
-+description: string
-+catégorie: string
-+statut: string
-
+class Tâche {
+  id: string
+  nom: string
+  description: string
+  catégorie: string
+  statut: string
+  délai: string
+  budget: string
+}
+Tâche --> Utilisateur
+Tâche --> Notifications
 @enduml

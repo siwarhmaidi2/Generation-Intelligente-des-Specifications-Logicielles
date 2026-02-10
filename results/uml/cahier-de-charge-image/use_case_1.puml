@@ -1,0 +1,15 @@
+@startuml
+actor "Utilisateur final" as Utilisateur_final
+usecase "Création rapide d'une tâche en moins de 2 clics" as FR1
+Utilisateur_final --> FR1
+usecase "Stockage local uniquement (SQLite)" as FR2
+Utilisateur_final --> FR2
+usecase "Création de 4 catégories maximum pour la tâche" as FR3
+Utilisateur_final --> FR3
+usecase "Statut : À fire/Encours/Terminé" as FR4
+Utilisateur_final --> FR4
+usecase "Notifications : Rappel unique partagée" as FR5
+Utilisateur_final --> FR5
+usecase "Esport : Liste hebdomadaire au format texte" as FR6
+Utilisateur_final --> FR6
+@enduml

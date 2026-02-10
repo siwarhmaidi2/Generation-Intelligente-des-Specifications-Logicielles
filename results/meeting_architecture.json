@@ -1,5 +1,5 @@
 {
-  "summary": "Architecture générée pour 4 entités principales avec UML, DB et stack technique.",
+  "summary": "Architecture conçue pour Besoin global : plateforme pour gestion des documents avec tableau de bord, cycle de vie des documents, rapports de gestion et recherche avancée. Priorités : must pour le chargement des pages principales, l'authentification à deux facteurs et le cryptage des données sensibles ; should pour les rapports de gestion. Documentation validation process. Migration des données existantes et développement du premier loup de fonctionnalité.. 3 entités principales identifiées. Score technique estimé: 7.0/10. Charge estimée: 79 jours.",
   "entities": [
     {
       "name": "Document",
@@ -12,42 +12,29 @@
         "updated\\_at"
       ],
       "relations": [
-        "Author",
-        "Manager",
-        "ValidationCommittee"
+        "User",
+        "ValidationProcess"
       ]
     },
     {
-      "name": "Author",
+      "name": "User",
       "attributes": [
         "id",
-        "name",
+        "username",
         "email",
+        "password",
         "role"
       ],
       "relations": [
-        "Document"
+        "Document",
+        "ValidationProcess"
       ]
     },
     {
-      "name": "Manager",
+      "name": "ValidationProcess",
       "attributes": [
         "id",
-        "name",
-        "email",
-        "role"
-      ],
-      "relations": [
-        "Document"
-      ]
-    },
-    {
-      "name": "ValidationCommittee",
-      "attributes": [
-        "id",
-        "name",
-        "email",
-        "role"
+        "status"
       ],
       "relations": [
         "Document"
@@ -55,71 +42,67 @@
     }
   ],
   "architecture": {
-    "pattern": "MVC",
-    "description": "Architecture basée sur entités détectées par LLM",
-    "diagram": {
-      "diagram_type": "use_case",
-      "content": "@startuml\nactor Superadministrateur\nactor Administrateur de compte client\nactor Utilisateur final\nactor Manager direct\nactor Comité de validation\nusecase \"Tableau de bord pour administrateur\" as FR1\nSuperadministrateur --> FR1\nAdministrateur de compte client --> FR1\nUtilisateur final --> FR1\nManager direct --> FR1\nComité de validation --> FR1\nusecase \"Cycle de vie des documents\" as FR2\nSuperadministrateur --> FR2\nAdministrateur de compte client --> FR2\nUtilisateur final --> FR2\nManager direct --> FR2\nComité de validation --> FR2\nusecase \"Rapports de gestion des documents\" as FR3\nSuperadministrateur --> FR3\nAdministrateur de compte client --> FR3\nUtilisateur final --> FR3\nManager direct --> FR3\nComité de validation --> FR3\nusecase \"Rapport de recherche avancée\" as FR4\nSuperadministrateur --> FR4\nAdministrateur de compte client --> FR4\nUtilisateur final --> FR4\nManager direct --> FR4\nComité de validation --> FR4\nusecase \"Documentation validation process\" as FR5\nSuperadministrateur --> FR5\nAdministrateur de compte client --> FR5\nUtilisateur final --> FR5\nManager direct --> FR5\nComité de validation --> FR5\nusecase \"Migration des données existantes\" as FR6\nSuperadministrateur --> FR6\nAdministrateur de compte client --> FR6\nUtilisateur final --> FR6\nManager direct --> FR6\nComité de validation --> FR6\nusecase \"Développement du premier loup de fonctionnalité\" as FR7\nSuperadministrateur --> FR7\nAdministrateur de compte client --> FR7\nUtilisateur final --> FR7\nManager direct --> FR7\nComité de validation --> FR7\n@enduml",
-      "description": "Diagramme Use Case"
-    }
+    "pattern": "Modular Monolith",
+    "description": "Architecture modulaire avec séparation forte des domaines.",
+    "diagram": null
   },
   "uml_diagrams": [
     {
       "diagram_type": "class",
-      "content": "@startuml\nclass Document {\n  id: string\n  title: string\n  content: string\n  status: string\n  created\\_at: string\n  updated\\_at: string\n}\nclass Author {\n  id: string\n  name: string\n  email: string\n  role: string\n}\nclass Manager {\n  id: string\n  name: string\n  email: string\n  role: string\n}\nclass ValidationCommittee {\n  id: string\n  name: string\n  email: string\n  role: string\n}\nDocument --> Author\nAuthor --> Manager\nManager --> ValidationCommittee\n@enduml",
-      "description": "Diagramme de classes"
+      "content": "@startuml\nclass Document {\n  id: string\n  title: string\n  content: string\n  status: string\n  created\\_at: string\n  updated\\_at: string\n}\nclass User {\n  id: string\n  username: string\n  email: string\n  password: string\n  role: string\n}\nclass ValidationProcess {\n  id: string\n  status: string\n}\nDocument --> User\nDocument --> ValidationProcess\nUser --> Document\nUser --> ValidationProcess\nValidationProcess --> Document\n@enduml",
+      "description": null
     },
     {
       "diagram_type": "use_case",
-      "content": "@startuml\nactor Superadministrateur\nactor Administrateur de compte client\nactor Utilisateur final\nactor Manager direct\nactor Comité de validation\nusecase \"Tableau de bord pour administrateur\" as FR1\nSuperadministrateur --> FR1\nAdministrateur de compte client --> FR1\nUtilisateur final --> FR1\nManager direct --> FR1\nComité de validation --> FR1\nusecase \"Cycle de vie des documents\" as FR2\nSuperadministrateur --> FR2\nAdministrateur de compte client --> FR2\nUtilisateur final --> FR2\nManager direct --> FR2\nComité de validation --> FR2\nusecase \"Rapports de gestion des documents\" as FR3\nSuperadministrateur --> FR3\nAdministrateur de compte client --> FR3\nUtilisateur final --> FR3\nManager direct --> FR3\nComité de validation --> FR3\nusecase \"Rapport de recherche avancée\" as FR4\nSuperadministrateur --> FR4\nAdministrateur de compte client --> FR4\nUtilisateur final --> FR4\nManager direct --> FR4\nComité de validation --> FR4\nusecase \"Documentation validation process\" as FR5\nSuperadministrateur --> FR5\nAdministrateur de compte client --> FR5\nUtilisateur final --> FR5\nManager direct --> FR5\nComité de validation --> FR5\nusecase \"Migration des données existantes\" as FR6\nSuperadministrateur --> FR6\nAdministrateur de compte client --> FR6\nUtilisateur final --> FR6\nManager direct --> FR6\nComité de validation --> FR6\nusecase \"Développement du premier loup de fonctionnalité\" as FR7\nSuperadministrateur --> FR7\nAdministrateur de compte client --> FR7\nUtilisateur final --> FR7\nManager direct --> FR7\nComité de validation --> FR7\n@enduml",
-      "description": "Diagramme Use Case"
+      "content": "@startuml\nactor \"Superadministrateur\" as Superadministrateur\nactor \"Administrateur de compte client\" as Administrateur_de_compte_client\nactor \"Utilisateur final\" as Utilisateur_final\nactor \"Manager direct\" as Manager_direct\nactor \"Comité de validation\" as Comité_de_validation\nusecase \"Tableau de bord pour administrateur\" as FR1\nSuperadministrateur --> FR1\nAdministrateur_de_compte_client --> FR1\nUtilisateur_final --> FR1\nManager_direct --> FR1\nComité_de_validation --> FR1\nusecase \"Cycle de vie des documents\" as FR2\nSuperadministrateur --> FR2\nAdministrateur_de_compte_client --> FR2\nUtilisateur_final --> FR2\nManager_direct --> FR2\nComité_de_validation --> FR2\nusecase \"Rapports de gestion des documents\" as FR3\nSuperadministrateur --> FR3\nAdministrateur_de_compte_client --> FR3\nUtilisateur_final --> FR3\nManager_direct --> FR3\nComité_de_validation --> FR3\nusecase \"Rapport de recherche avancée\" as FR4\nSuperadministrateur --> FR4\nAdministrateur_de_compte_client --> FR4\nUtilisateur_final --> FR4\nManager_direct --> FR4\nComité_de_validation --> FR4\nusecase \"Documentation validation process\" as FR5\nSuperadministrateur --> FR5\nAdministrateur_de_compte_client --> FR5\nUtilisateur_final --> FR5\nManager_direct --> FR5\nComité_de_validation --> FR5\nusecase \"Migration des données existantes\" as FR6\nSuperadministrateur --> FR6\nAdministrateur_de_compte_client --> FR6\nUtilisateur_final --> FR6\nManager_direct --> FR6\nComité_de_validation --> FR6\nusecase \"Développement du premier loup de fonctionnalité\" as FR7\nSuperadministrateur --> FR7\nAdministrateur_de_compte_client --> FR7\nUtilisateur_final --> FR7\nManager_direct --> FR7\nComité_de_validation --> FR7\n@enduml",
+      "description": null
     },
     {
       "diagram_type": "sequence",
       "content": "@startuml\nSuperadministrateur -> Document: Tableau de bord pour administrateur\nDocument --> Superadministrateur: response\n@enduml",
-      "description": "Diagramme de séquence"
+      "description": null
     }
   ],
   "database": {
     "schema_type": "sql",
-    "content": "CREATE TABLE document (\n  id INT PRIMARY KEY,\n  title VARCHAR,\n  content VARCHAR,\n  status VARCHAR,\n  created\\_at VARCHAR,\n  updated\\_at VARCHAR\n);\nCREATE TABLE author (\n  id INT PRIMARY KEY,\n  name VARCHAR,\n  email VARCHAR,\n  role VARCHAR\n);\nCREATE TABLE manager (\n  id INT PRIMARY KEY,\n  name VARCHAR,\n  email VARCHAR,\n  role VARCHAR\n);\nCREATE TABLE validationcommittee (\n  id INT PRIMARY KEY,\n  name VARCHAR,\n  email VARCHAR,\n  role VARCHAR\n);\n",
+    "content": "CREATE TABLE document (\n  id INT PRIMARY KEY,\n  title VARCHAR(255),\n  content VARCHAR(255),\n  status TIMESTAMP,\n  created__at TIMESTAMP,\n  updated__at TIMESTAMP,\n  user_id INT,\n  validationprocess_id INT,\n  FOREIGN KEY (user_id) REFERENCES user(id) ON DELETE CASCADE,\n  FOREIGN KEY (validationprocess_id) REFERENCES validationprocess(id) ON DELETE CASCADE\n);\n\nCREATE TABLE user (\n  id INT PRIMARY KEY,\n  username VARCHAR(255),\n  email VARCHAR(255),\n  password VARCHAR(255),\n  role VARCHAR(255),\n  document_id INT,\n  validationprocess_id INT,\n  FOREIGN KEY (document_id) REFERENCES document(id) ON DELETE CASCADE,\n  FOREIGN KEY (validationprocess_id) REFERENCES validationprocess(id) ON DELETE CASCADE\n);\n\nCREATE TABLE validationprocess (\n  id INT PRIMARY KEY,\n  status TIMESTAMP,\n  document_id INT,\n  FOREIGN KEY (document_id) REFERENCES document(id) ON DELETE CASCADE\n);\n\n",
     "tables": [
       {
         "name": "document",
         "columns": [
           "id INT PRIMARY KEY",
-          "title VARCHAR",
-          "content VARCHAR",
-          "status VARCHAR",
-          "created\\_at VARCHAR",
-          "updated\\_at VARCHAR"
+          "title VARCHAR(255)",
+          "content VARCHAR(255)",
+          "status TIMESTAMP",
+          "created__at TIMESTAMP",
+          "updated__at TIMESTAMP",
+          "user_id INT",
+          "validationprocess_id INT",
+          "FOREIGN KEY (user_id) REFERENCES user(id) ON DELETE CASCADE",
+          "FOREIGN KEY (validationprocess_id) REFERENCES validationprocess(id) ON DELETE CASCADE"
         ]
       },
       {
-        "name": "author",
+        "name": "user",
         "columns": [
           "id INT PRIMARY KEY",
-          "name VARCHAR",
-          "email VARCHAR",
-          "role VARCHAR"
+          "username VARCHAR(255)",
+          "email VARCHAR(255)",
+          "password VARCHAR(255)",
+          "role VARCHAR(255)",
+          "document_id INT",
+          "validationprocess_id INT",
+          "FOREIGN KEY (document_id) REFERENCES document(id) ON DELETE CASCADE",
+          "FOREIGN KEY (validationprocess_id) REFERENCES validationprocess(id) ON DELETE CASCADE"
         ]
       },
       {
-        "name": "manager",
+        "name": "validationprocess",
         "columns": [
           "id INT PRIMARY KEY",
-          "name VARCHAR",
-          "email VARCHAR",
-          "role VARCHAR"
-        ]
-      },
-      {
-        "name": "validationcommittee",
-        "columns": [
-          "id INT PRIMARY KEY",
-          "name VARCHAR",
-          "email VARCHAR",
-          "role VARCHAR"
+          "status TIMESTAMP",
+          "document_id INT",
+          "FOREIGN KEY (document_id) REFERENCES document(id) ON DELETE CASCADE"
         ]
       }
     ]
@@ -127,45 +110,52 @@
   "dependencies": [
     {
       "module_from": "Document",
-      "module_to": "Author",
-      "description": "Dépendance détectée"
+      "module_to": "User",
+      "description": "Relation détectée"
     },
     {
-      "module_from": "Author",
-      "module_to": "Manager",
-      "description": "Dépendance détectée"
+      "module_from": "Document",
+      "module_to": "ValidationProcess",
+      "description": "Relation détectée"
     },
     {
-      "module_from": "Manager",
-      "module_to": "ValidationCommittee",
-      "description": "Dépendance détectée"
+      "module_from": "User",
+      "module_to": "Document",
+      "description": "Relation détectée"
+    },
+    {
+      "module_from": "User",
+      "module_to": "ValidationProcess",
+      "description": "Relation détectée"
+    },
+    {
+      "module_from": "ValidationProcess",
+      "module_to": "Document",
+      "description": "Relation détectée"
     }
   ],
   "tech_stack": {
     "frontend": [
-      "React",
-      "TypeScript"
+      "Modern Web Client"
     ],
     "backend": [
-      "FastAPI",
-      "Python"
+      "RESTful Backend Service"
     ],
     "database": [
-      "PostgreSQL"
+      "Relational Database"
     ],
     "infrastructure": [
-      "Docker",
-      "AWS"
+      "Containerized Deployment"
     ],
-    "justification": "Stack technique générée automatiquement"
+    "justification": "Fallback stack basée sur score 7.0"
   },
   "consistency": {
     "is_consistent": true,
     "issues": []
   },
   "complexity": {
-    "technical_score": 7,
-    "dev_days_estimate": 30,
-    "reasoning": "Complexité moyenne"
+    "technical_score": 7.0,
+    "dev_days_estimate": 79,
+    "reasoning": "3 entités, 5 acteurs, 7 FR, 4 NFR, 4.0 poids relationnel."
   }
 }

@@ -7,25 +7,20 @@ class Document {
   created\_at: string
   updated\_at: string
 }
-class Author {
+class User {
   id: string
-  name: string
+  username: string
   email: string
+  password: string
   role: string
 }
-class Manager {
+class ValidationProcess {
   id: string
-  name: string
-  email: string
-  role: string
+  status: string
 }
-class ValidationCommittee {
-  id: string
-  name: string
-  email: string
-  role: string
-}
-Document --> Author
-Author --> Manager
-Manager --> ValidationCommittee
+Document --> User
+Document --> ValidationProcess
+User --> Document
+User --> ValidationProcess
+ValidationProcess --> Document
 @enduml

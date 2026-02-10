@@ -1,17 +1,6 @@
 {
-  "summary": "Analyse de l'architecture pour une application mobile hybride (Flutter) pour la gestion quotidienne des tâches pour les utilisateurs individuels.",
+  "summary": "Architecture conçue pour Simplification de la gestion quotidienne des tâches pour les utilisateurs individuels via une application mobile hybride (Flutter) sur OS/Android, avec stockage local uniquement et performance optimisée.. 1 entités principales identifiées. Score technique estimé: 2.98/10. Charge estimée: 32 jours.",
   "entities": [
-    {
-      "name": "Utilisateur",
-      "attributes": [
-        "id",
-        "nom",
-        "email"
-      ],
-      "relations": [
-        "commande"
-      ]
-    },
     {
       "name": "Tâche",
       "attributes": [
@@ -19,77 +8,90 @@
         "nom",
         "description",
         "catégorie",
-        "statut"
+        "statut",
+        "délai",
+        "budget"
       ],
       "relations": [
-        "commande",
-        "notifications"
+        "Utilisateur",
+        "Notifications"
       ]
     }
   ],
   "architecture": {
-    "pattern": "mvc",
-    "description": "Utilisation du pattern MVC pour la gestion des tâches.",
-    "diagram": {
-      "diagram_type": "use_case",
-      "content": "@startuml\n\nactor Utilisateur\n\nactor Tâche\n\nutilisateur Utilisateur->+commande Tâche\n\nutilisateur Tâche->+notifications Utilisateur\n\n@enduml",
-      "description": "UseCase complet"
-    }
+    "pattern": "Layered Architecture",
+    "description": "Architecture en couches adaptée aux projets simples ou moyens.",
+    "diagram": null
   },
   "uml_diagrams": [
     {
       "diagram_type": "class",
-      "content": "@startuml\n\nclass Utilisateur\n\n+id: int\n+nom: string\n+email: string\n\nclass Tâche\n\n+id: int\n+nom: string\n+description: string\n+catégorie: string\n+statut: string\n\n@enduml",
-      "description": "Diagramme de classes"
+      "content": "@startuml\nclass Tâche {\n  id: string\n  nom: string\n  description: string\n  catégorie: string\n  statut: string\n  délai: string\n  budget: string\n}\nTâche --> Utilisateur\nTâche --> Notifications\n@enduml",
+      "description": null
+    },
+    {
+      "diagram_type": "use_case",
+      "content": "@startuml\nactor \"Utilisateur final\" as Utilisateur_final\nusecase \"Création rapide d'une tâche en moins de 2 clics\" as FR1\nUtilisateur_final --> FR1\nusecase \"Stockage local uniquement (SQLite)\" as FR2\nUtilisateur_final --> FR2\nusecase \"Création de 4 catégories maximum pour la tâche\" as FR3\nUtilisateur_final --> FR3\nusecase \"Statut : À fire/Encours/Terminé\" as FR4\nUtilisateur_final --> FR4\nusecase \"Notifications : Rappel unique partagée\" as FR5\nUtilisateur_final --> FR5\nusecase \"Esport : Liste hebdomadaire au format texte\" as FR6\nUtilisateur_final --> FR6\n@enduml",
+      "description": null
+    },
+    {
+      "diagram_type": "sequence",
+      "content": "@startuml\nUtilisateur_final -> Tâche: Création rapide d'une tâche en moins de 2 clics\nTâche --> Utilisateur_final: response\n@enduml",
+      "description": null
     }
   ],
   "database": {
-    "schema_type": "sqlite",
-    "content": "CREATE TABLE tâches (id INTEGER PRIMARY KEY, nom TEXT, description TEXT, catégorie TEXT, statut TEXT)",
+    "schema_type": "sql",
+    "content": "CREATE TABLE tâche (\n  id INT PRIMARY KEY,\n  nom VARCHAR(255),\n  description VARCHAR(255),\n  catégorie TIMESTAMP,\n  statut TIMESTAMP,\n  délai VARCHAR(255),\n  budget VARCHAR(255)\n);\n\n",
     "tables": [
       {
-        "name": "tâches",
+        "name": "tâche",
         "columns": [
-          "id",
-          "nom",
-          "description",
-          "catégorie",
-          "statut"
+          "id INT PRIMARY KEY",
+          "nom VARCHAR(255)",
+          "description VARCHAR(255)",
+          "catégorie TIMESTAMP",
+          "statut TIMESTAMP",
+          "délai VARCHAR(255)",
+          "budget VARCHAR(255)"
         ]
       }
     ]
   },
   "dependencies": [
     {
-      "module_from": "Frontend",
-      "module_to": "API",
-      "description": "Appels REST"
+      "module_from": "Tâche",
+      "module_to": "Utilisateur",
+      "description": "Relation détectée"
+    },
+    {
+      "module_from": "Tâche",
+      "module_to": "Notifications",
+      "description": "Relation détectée"
     }
   ],
   "tech_stack": {
     "frontend": [
-      "Flutter",
-      "Dart"
+      "Modern Web Client"
     ],
     "backend": [
-      "FastAPI",
-      "Python"
+      "RESTful Backend Service"
     ],
     "database": [
-      "SQLite"
+      "Relational Database"
     ],
     "infrastructure": [
-      "Docker"
+      "Single Server Deployment"
     ],
-    "justification": "Stack moderne et performante pour une application mobile hybride."
+    "justification": "Fallback stack basée sur score 2.98"
   },
   "consistency": {
     "is_consistent": true,
     "issues": []
   },
   "complexity": {
-    "technical_score": 7,
-    "dev_days_estimate": 45,
-    "reasoning": "Complexité moyenne due à la combinaison de Flutter et FastAPI."
+    "technical_score": 2.98,
+    "dev_days_estimate": 32,
+    "reasoning": "1 entités, 1 acteurs, 6 FR, 1 NFR, 1.6 poids relationnel."
   }
 }
