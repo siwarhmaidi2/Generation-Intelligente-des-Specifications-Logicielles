@@ -1,0 +1,26 @@
+@startuml
+actor "Administrator" as actor
+participant "Tableau de bord" as entity1
+participant "Cycle de vie des documents" as entity2
+participant "Rapports de gestion" as entity3
+participant "Recherche avancée" as entity4
+
+actor -> entity1: Affichage du tableau de bord
+activate entity1
+
+entity1 -> entity2: Gestion des documents
+activate entity2
+
+entity2 -> entity3: Rapports de gestion
+activate entity3
+
+entity3 --> entity2: Retour
+deactivate entity3
+
+entity2 --> entity4: Recherche avancée
+activate entity4
+
+entity4 --> entity1: Retour
+deactivate entity4
+
+@enduml

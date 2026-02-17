@@ -1,0 +1,38 @@
+@startuml
+actor User
+actor CloudEnvironment
+actor UtilisateurFinal
+actor ProprietaireDonnees
+actor AdministrateurBaseDeDonnees
+
+User->>CloudEnvironment: Collect data from environment
+CloudEnvironment->>UtilisateurFinal: Store and manage data
+UtilisateurFinal->>ProprietaireDonnees: Share private files and data
+ProprietaireDonnees->>AdministrateurBaseDeDonnees: Manage access to data
+
+User->>CloudEnvironment: Define access to data
+CloudEnvironment->>UtilisateurFinal: Provide information on data
+object UtilisateurFinal, ProprietaireDonnees, AdministrateurBaseDeDonnees {
+    title = "FR13"
+    abstract = "FR14"
+    temporal_extent_name = "FR15"
+    start_date = "FR16"
+    end_date = "FR17"
+    spatial_extent_name = "FR18"
+    topic_categories = "FR19"
+    inspire_themes = "FR20"
+    gemet_keywords = "FR21"
+    other_keywords = "FR22"
+    md_contact = "FR23"
+    lineage = "FR24"
+    use_condition = "FR25"
+}
+
+User->>CloudEnvironment: Collect data on private parcels
+CloudEnvironment->>UtilisateurFinal: Provide information on collected data
+
+User->>AdministrateurBaseDeDonnees: Define access to data
+AdministrateurBaseDeDonnees->>UtilisateurFinal: Provide information on data
+
+stop
+@enduml

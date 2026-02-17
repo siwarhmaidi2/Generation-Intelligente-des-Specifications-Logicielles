@@ -1,161 +1,213 @@
 {
-  "summary": "Architecture conçue pour Besoin global : plateforme pour gestion des documents avec tableau de bord, cycle de vie des documents, rapports de gestion et recherche avancée. Priorités : must pour le chargement des pages principales, l'authentification à deux facteurs et le cryptage des données sensibles ; should pour les rapports de gestion. Documentation validation process. Migration des données existantes et développement du premier loup de fonctionnalité.. 3 entités principales identifiées. Score technique estimé: 7.0/10. Charge estimée: 79 jours.",
+  "summary": "Architecture conçue pour : Besoin global : plateforme pour gestion des documents avec tableau de bord, cycle de vie des documents, rapports de gestion et recherche avancée. Priorités : must pour le chargement des pages principales, l'authentification à deux facteurs et le cryptage des données sensibles ; should pour les rapports de gestion. Documentation validation process. Migration des données existantes et développement du premier loup de fonctionnalité.. Le système comprend 8 entités principales (Document, Client, ManagerDirect, ComiteValidation, Version...). Score de complexité technique : 10.0/10. Charge de travail estimée : 124 jours de développement.",
   "entities": [
     {
       "name": "Document",
       "attributes": [
-        "id",
-        "title",
-        "content",
-        "status",
-        "created\\_at",
-        "updated\\_at"
+        "id:int",
+        "title:string",
+        "content:text",
+        "created_at:datetime",
+        "modified_at:datetime"
       ],
       "relations": [
-        "User",
-        "ValidationProcess"
+        {
+          "type": "has_many",
+          "target": "Version"
+        },
+        {
+          "type": "belongs_to",
+          "target": "Client"
+        }
       ]
     },
     {
-      "name": "User",
+      "name": "Client",
       "attributes": [
-        "id",
-        "username",
-        "email",
-        "password",
-        "role"
+        "id:int",
+        "name:string",
+        "email:string",
+        "created_at:datetime",
+        "modified_at:datetime"
       ],
       "relations": [
-        "Document",
-        "ValidationProcess"
+        {
+          "type": "has_many",
+          "target": "Document"
+        },
+        {
+          "type": "has_one",
+          "target": "ManagerDirect"
+        }
       ]
     },
     {
-      "name": "ValidationProcess",
+      "name": "ManagerDirect",
       "attributes": [
-        "id",
-        "status"
+        "id:int",
+        "name:string",
+        "email:string",
+        "created_at:datetime",
+        "modified_at:datetime"
       ],
       "relations": [
-        "Document"
+        {
+          "type": "has_one",
+          "target": "Client"
+        },
+        {
+          "type": "belongs_to",
+          "target": "ComiteValidation"
+        }
+      ]
+    },
+    {
+      "name": "ComiteValidation",
+      "attributes": [
+        "id:int",
+        "name:string",
+        "created_at:datetime",
+        "modified_at:datetime"
+      ],
+      "relations": [
+        {
+          "type": "has_one",
+          "target": "ManagerDirect"
+        },
+        {
+          "type": "belongs_to",
+          "target": "Client"
+        }
+      ]
+    },
+    {
+      "name": "Version",
+      "attributes": [
+        "id:int",
+        "document_id:int",
+        "status:string",
+        "created_at:datetime",
+        "modified_at:datetime"
+      ],
+      "relations": [
+        {
+          "type": "belongs_to",
+          "target": "Document"
+        },
+        {
+          "type": "has_one",
+          "target": "ReportGestion"
+        }
+      ]
+    },
+    {
+      "name": "ReportGestion",
+      "attributes": [
+        "id:int",
+        "version_id:int",
+        "content:text",
+        "created_at:datetime",
+        "modified_at:datetime"
+      ],
+      "relations": [
+        {
+          "type": "belongs_to",
+          "target": "Version"
+        },
+        {
+          "type": "has_one",
+          "target": "ReportValidation"
+        }
+      ]
+    },
+    {
+      "name": "ReportValidation",
+      "attributes": [
+        "id:int",
+        "report_gestion_id:int",
+        "status:string",
+        "created_at:datetime",
+        "modified_at:datetime"
+      ],
+      "relations": [
+        {
+          "type": "belongs_to",
+          "target": "ReportGestion"
+        },
+        {
+          "type": "has_one",
+          "target": "Validation"
+        }
+      ]
+    },
+    {
+      "name": "Validation",
+      "attributes": [
+        "id:int",
+        "report_validation_id:int",
+        "status:string",
+        "created_at:datetime",
+        "modified_at:datetime"
+      ],
+      "relations": [
+        {
+          "type": "belongs_to",
+          "target": "ReportValidation"
+        },
+        {
+          "type": "has_one",
+          "target": "Document"
+        }
       ]
     }
   ],
-  "architecture": {
-    "pattern": "Modular Monolith",
-    "description": "Architecture modulaire avec séparation forte des domaines.",
-    "diagram": null
-  },
   "uml_diagrams": [
     {
       "diagram_type": "class",
-      "content": "@startuml\nclass Document {\n  id: string\n  title: string\n  content: string\n  status: string\n  created\\_at: string\n  updated\\_at: string\n}\nclass User {\n  id: string\n  username: string\n  email: string\n  password: string\n  role: string\n}\nclass ValidationProcess {\n  id: string\n  status: string\n}\nDocument --> User\nDocument --> ValidationProcess\nUser --> Document\nUser --> ValidationProcess\nValidationProcess --> Document\n@enduml",
-      "description": null
+      "content": "@startuml\nclass Document {\n  id: int\n  title: string\n  content: text\n  created_at: datetime\n  modified_at: datetime\n}\n\nclass Client {\n  id: int\n  name: string\n  email: string\n  created_at: datetime\n  modified_at: datetime\n}\n\nclass ManagerDirect {\n  id: int\n  name: string\n  email: string\n  created_at: datetime\n  modified_at: datetime\n}\n\nclass ComiteValidation {\n  id: int\n  name: string\n  created_at: datetime\n  modified_at: datetime\n}\n\nclass Version {\n  id: int\n  document_id: int\n  status: string\n  created_at: datetime\n  modified_at: datetime\n}\n\nclass ReportGestion {\n  id: int\n  version_id: int\n  content: text\n  created_at: datetime\n  modified_at: datetime\n}\n\nclass ReportValidation {\n  id: int\n  report_gestion_id: int\n  status: string\n  created_at: datetime\n  modified_at: datetime\n}\n\nclass Validation {\n  id: int\n  report_validation_id: int\n  status: string\n  created_at: datetime\n  modified_at: datetime\n}\n\nDocument \"1\" -- \"0..*\" Version : document_has_versions >\nClient \"1\" -- \"0..*\" ManagerDirect : client_has_manager_direct >\nManagerDirect \"1\" -- \"0..1\" ComiteValidation : manager_direct_belongs_to_comite_validation >\nComiteValidation \"1\" -- \"0..1\" Client : comite_validation_belongs_to_client >\nVersion \"1\" -- \"0..*\" ReportGestion : version_has_report_gestions >\nReportGestion \"1\" -- \"0..*\" ReportValidation : report_gestion_has_report_validations >\nReportValidation \"1\" -- \"0..*\" Validation : report_validation_has_validations >\n\nnote right of Document\n  Document principal\nend note\n\nnote right of Client\n  Client principal\nend note\n\nnote right of ManagerDirect\n  Manager direct\nend note\n\nnote right of ComiteValidation\n  Comité de validation\nend note\n\nnote right of Version\n  Version\nend note\n\nnote right of ReportGestion\n  Rapport de gestion\nend note\n\nnote right of ReportValidation\n  Rapport de validation\nend note\n\nnote right of Validation\n  Validation\nend note\n\n@enduml",
+      "description": "Diagramme de classes du système"
     },
     {
       "diagram_type": "use_case",
-      "content": "@startuml\nactor \"Superadministrateur\" as Superadministrateur\nactor \"Administrateur de compte client\" as Administrateur_de_compte_client\nactor \"Utilisateur final\" as Utilisateur_final\nactor \"Manager direct\" as Manager_direct\nactor \"Comité de validation\" as Comité_de_validation\nusecase \"Tableau de bord pour administrateur\" as FR1\nSuperadministrateur --> FR1\nAdministrateur_de_compte_client --> FR1\nUtilisateur_final --> FR1\nManager_direct --> FR1\nComité_de_validation --> FR1\nusecase \"Cycle de vie des documents\" as FR2\nSuperadministrateur --> FR2\nAdministrateur_de_compte_client --> FR2\nUtilisateur_final --> FR2\nManager_direct --> FR2\nComité_de_validation --> FR2\nusecase \"Rapports de gestion des documents\" as FR3\nSuperadministrateur --> FR3\nAdministrateur_de_compte_client --> FR3\nUtilisateur_final --> FR3\nManager_direct --> FR3\nComité_de_validation --> FR3\nusecase \"Rapport de recherche avancée\" as FR4\nSuperadministrateur --> FR4\nAdministrateur_de_compte_client --> FR4\nUtilisateur_final --> FR4\nManager_direct --> FR4\nComité_de_validation --> FR4\nusecase \"Documentation validation process\" as FR5\nSuperadministrateur --> FR5\nAdministrateur_de_compte_client --> FR5\nUtilisateur_final --> FR5\nManager_direct --> FR5\nComité_de_validation --> FR5\nusecase \"Migration des données existantes\" as FR6\nSuperadministrateur --> FR6\nAdministrateur_de_compte_client --> FR6\nUtilisateur_final --> FR6\nManager_direct --> FR6\nComité_de_validation --> FR6\nusecase \"Développement du premier loup de fonctionnalité\" as FR7\nSuperadministrateur --> FR7\nAdministrateur_de_compte_client --> FR7\nUtilisateur_final --> FR7\nManager_direct --> FR7\nComité_de_validation --> FR7\n@enduml",
-      "description": null
+      "content": "@startuml\nleft to right direction\n\nactor \"Superadministrateur\" as superadmin\nactor \"Administrateur de compte client\" as adminclient\nactor \"Utilisateur final\" as userfinal\nactor \"Manager direct\" as managerdirect\nactor \"Comité de validation\" as committeevalidation\n\npackage \"Tableau de bord\" {\n  usecase \"Affichage du tableau de bord pour l'administrateur\" as FR1\n}\n\npackage \"Cycle de vie des documents\" {\n  usecase \"Gestion des versions des documents\" as FR2\n  usecase \"Gestion des documents\" as FR6\n}\n\npackage \"Rapports de gestion\" {\n  usecase \"Affichage des rapports de gestion\" as FR3\n}\n\npackage \"Recherche avancée\" {\n  usecase \"Recherche avancée des documents\" as FR4\n}\n\npackage \"Documentation validation process\" {\n  usecase \"Validation des documents\" as FR5\n}\n\nsuperadmin --> FR1\nadminclient --> FR2\nmanagerdirect --> FR6\nuserfinal --> FR2, FR6\ncommitteevalidation --> FR3, FR5\n\nFR1 ..> FR2 : <<include>>\nFR2 ..> FR6 : <<extend>>\nFR3 ..> FR5 : <<extend>>\n\n@enduml",
+      "description": "Diagramme des cas d'utilisation"
+    },
+    {
+      "diagram_type": "activity",
+      "content": "@startuml\n|ManagerDirect|\nstart\n\n:Activity from requirements;\n\n:Another activity;\n\nif (Condition based on requirements ?) then (yes)\n  :Action if true;\n  \n  |Client|\n  :Another actor's action;\n  \nelse (no)\n  :Action if false;\n  stop\nendif\n\n|ManagerDirect|\n:Final activity;\n\nstop\n@enduml",
+      "description": "Diagramme d'activité principal"
     },
     {
       "diagram_type": "sequence",
-      "content": "@startuml\nSuperadministrateur -> Document: Tableau de bord pour administrateur\nDocument --> Superadministrateur: response\n@enduml",
-      "description": null
-    }
-  ],
-  "database": {
-    "schema_type": "sql",
-    "content": "CREATE TABLE document (\n  id INT PRIMARY KEY,\n  title VARCHAR(255),\n  content VARCHAR(255),\n  status TIMESTAMP,\n  created__at TIMESTAMP,\n  updated__at TIMESTAMP,\n  user_id INT,\n  validationprocess_id INT,\n  FOREIGN KEY (user_id) REFERENCES user(id) ON DELETE CASCADE,\n  FOREIGN KEY (validationprocess_id) REFERENCES validationprocess(id) ON DELETE CASCADE\n);\n\nCREATE TABLE user (\n  id INT PRIMARY KEY,\n  username VARCHAR(255),\n  email VARCHAR(255),\n  password VARCHAR(255),\n  role VARCHAR(255),\n  document_id INT,\n  validationprocess_id INT,\n  FOREIGN KEY (document_id) REFERENCES document(id) ON DELETE CASCADE,\n  FOREIGN KEY (validationprocess_id) REFERENCES validationprocess(id) ON DELETE CASCADE\n);\n\nCREATE TABLE validationprocess (\n  id INT PRIMARY KEY,\n  status TIMESTAMP,\n  document_id INT,\n  FOREIGN KEY (document_id) REFERENCES document(id) ON DELETE CASCADE\n);\n\n",
-    "tables": [
-      {
-        "name": "document",
-        "columns": [
-          "id INT PRIMARY KEY",
-          "title VARCHAR(255)",
-          "content VARCHAR(255)",
-          "status TIMESTAMP",
-          "created__at TIMESTAMP",
-          "updated__at TIMESTAMP",
-          "user_id INT",
-          "validationprocess_id INT",
-          "FOREIGN KEY (user_id) REFERENCES user(id) ON DELETE CASCADE",
-          "FOREIGN KEY (validationprocess_id) REFERENCES validationprocess(id) ON DELETE CASCADE"
-        ]
-      },
-      {
-        "name": "user",
-        "columns": [
-          "id INT PRIMARY KEY",
-          "username VARCHAR(255)",
-          "email VARCHAR(255)",
-          "password VARCHAR(255)",
-          "role VARCHAR(255)",
-          "document_id INT",
-          "validationprocess_id INT",
-          "FOREIGN KEY (document_id) REFERENCES document(id) ON DELETE CASCADE",
-          "FOREIGN KEY (validationprocess_id) REFERENCES validationprocess(id) ON DELETE CASCADE"
-        ]
-      },
-      {
-        "name": "validationprocess",
-        "columns": [
-          "id INT PRIMARY KEY",
-          "status TIMESTAMP",
-          "document_id INT",
-          "FOREIGN KEY (document_id) REFERENCES document(id) ON DELETE CASCADE"
-        ]
-      }
-    ]
-  },
-  "dependencies": [
-    {
-      "module_from": "Document",
-      "module_to": "User",
-      "description": "Relation détectée"
-    },
-    {
-      "module_from": "Document",
-      "module_to": "ValidationProcess",
-      "description": "Relation détectée"
-    },
-    {
-      "module_from": "User",
-      "module_to": "Document",
-      "description": "Relation détectée"
-    },
-    {
-      "module_from": "User",
-      "module_to": "ValidationProcess",
-      "description": "Relation détectée"
-    },
-    {
-      "module_from": "ValidationProcess",
-      "module_to": "Document",
-      "description": "Relation détectée"
+      "content": "@startuml\nactor \"Administrator\" as actor\nparticipant \"Tableau de bord\" as entity1\nparticipant \"Cycle de vie des documents\" as entity2\nparticipant \"Rapports de gestion\" as entity3\nparticipant \"Recherche avancée\" as entity4\n\nactor -> entity1: Affichage du tableau de bord\nactivate entity1\n\nentity1 -> entity2: Gestion des documents\nactivate entity2\n\nentity2 -> entity3: Rapports de gestion\nactivate entity3\n\nentity3 --> entity2: Retour\ndeactivate entity3\n\nentity2 --> entity4: Recherche avancée\nactivate entity4\n\nentity4 --> entity1: Retour\ndeactivate entity4\n\n@enduml",
+      "description": "Diagramme de séquence des flux principaux"
     }
   ],
   "tech_stack": {
     "frontend": [
-      "Modern Web Client"
+      "React",
+      "Angular",
+      "Vue"
     ],
     "backend": [
-      "RESTful Backend Service"
-    ],
-    "database": [
-      "Relational Database"
+      "Node.js",
+      "Python Flask",
+      "Django REST Framework"
     ],
     "infrastructure": [
-      "Containerized Deployment"
+      "Amazon Web Services (AWS)",
+      "Microsoft Azure",
+      "Google Cloud Platform (GCP)"
     ],
-    "justification": "Fallback stack basée sur score 7.0"
+    "justification": "Une stack moderne et équilibrée pour un système de gestion de documents avec tableau de bord, cycle de vie des documents, rapports de gestion et recherche avancée. La complexité du projet est élevée, donc une stack enterprise et scalable est nécessaire. Les exigences non-fonctionnelles sont prioritaires et doivent être satisfaites. React, Angular et Vue sont des frameworks frontend modernes et adaptés pour la construction d'applications web performantes. Node.js, Python Flask et Django REST Framework sont des frameworks backend modernes et adaptés pour la construction d'applications web scalables et sécurisées. AWS, Azure et GCP sont des infrastructures cloud modernes et adaptées pour la déploiement et l'échelle de systèmes web."
   },
   "consistency": {
     "is_consistent": true,
     "issues": []
   },
   "complexity": {
-    "technical_score": 7.0,
-    "dev_days_estimate": 79,
-    "reasoning": "3 entités, 5 acteurs, 7 FR, 4 NFR, 4.0 poids relationnel."
+    "technical_score": 10.0,
+    "dev_days_estimate": 124,
+    "reasoning": "8 entités, 5 acteurs, 7 exigences fonctionnelles, 4 exigences non-fonctionnelles, 16 relations."
   }
 }

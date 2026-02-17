@@ -1,0 +1,54 @@
+@startuml
+left to right direction
+
+actor "Users" as actor1
+actor "CloudEnvironment" as actor2
+actor "UtilisateurFinal" as actor3
+actor "ProprietaireDonnees" as actor4
+actor "AdministrateurBaseDeDonnees" as actor5
+
+package "Observation et gestion des données" {
+  usecase "Créer un service pour l'observation de l'environnement et les agro-écosystèmes" as UC1
+  usecase "Stocker, gérer et sécuriser les données mesurées sur différents instruments instrumentés dans la région d'Auvergne" as UC2
+  usecase "Faciliter l'organisation et l'extraction d'informations pour progresser dans l'understanding des compartiments environnementaux, leurs impacts sur les agro-écosystèmes et les interrelations entre eux" as UC3
+}
+
+package "Compartimentement et modélisation" {
+  usecase "Comprendre les compartiments environnementaux face au changement global" as UC4
+  usecase "Conceptualiser les interrelations entre les compartiments pour comprendre, modéliser et prédire le comportement des agro-écosystèmes" as UC5
+}
+
+package "Données et stockage" {
+  usecase "Stocker directement les données brutes présentes sur les serveurs de fichiers" as UC6
+  usecase "Stocker les données hétérogènes provenant de diverses sources dans une base SQL et une base NoSQL" as UC7
+}
+
+package "Partage et publication des données" {
+  usecase "Partager des fichiers volumineux tels que images, vidéos et audios" as UC8
+  usecase "Partager des données hétérogènes provenant de diverses sources" as UC9
+  usecase "Publiier les données en OpenData" as UC10
+}
+
+package "Utilisation et redistribution des données" {
+  usecase "Réutiliser et redistribuer les données, y compris le mélange avec d'autres ensembles de données" as UC11
+}
+
+actor1 --> UC1
+actor2 --> UC2
+actor3 --> UC4
+actor4 --> UC5
+actor5 --> UC6 : <<include>>
+actor5 --> UC7 : <<extend>>
+actor1 --> UC8
+actor2 --> UC9
+actor5 --> UC10
+actor5 --> UC11 : <<extend>>
+
+UC1 ..> UC2 : <<include>>
+UC3 ..> UC4 : <<include>>
+UC3 ..> UC5 : <<include>>
+UC6 ..> UC7 : <<include>>
+UC8 ..> UC9 : <<include>>
+UC10 ..> UC11 : <<include>>
+
+@enduml

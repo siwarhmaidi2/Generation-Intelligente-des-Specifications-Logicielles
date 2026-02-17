@@ -1,0 +1,24 @@
+@startuml
+|ManagerDirect|
+start
+
+:Activity from requirements;
+
+:Another activity;
+
+if (Condition based on requirements ?) then (yes)
+  :Action if true;
+  
+  |Client|
+  :Another actor's action;
+  
+else (no)
+  :Action if false;
+  stop
+endif
+
+|ManagerDirect|
+:Final activity;
+
+stop
+@enduml

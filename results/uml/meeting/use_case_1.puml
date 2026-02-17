@@ -1,49 +1,41 @@
 @startuml
-actor "Superadministrateur" as Superadministrateur
-actor "Administrateur de compte client" as Administrateur_de_compte_client
-actor "Utilisateur final" as Utilisateur_final
-actor "Manager direct" as Manager_direct
-actor "Comité de validation" as Comité_de_validation
-usecase "Tableau de bord pour administrateur" as FR1
-Superadministrateur --> FR1
-Administrateur_de_compte_client --> FR1
-Utilisateur_final --> FR1
-Manager_direct --> FR1
-Comité_de_validation --> FR1
-usecase "Cycle de vie des documents" as FR2
-Superadministrateur --> FR2
-Administrateur_de_compte_client --> FR2
-Utilisateur_final --> FR2
-Manager_direct --> FR2
-Comité_de_validation --> FR2
-usecase "Rapports de gestion des documents" as FR3
-Superadministrateur --> FR3
-Administrateur_de_compte_client --> FR3
-Utilisateur_final --> FR3
-Manager_direct --> FR3
-Comité_de_validation --> FR3
-usecase "Rapport de recherche avancée" as FR4
-Superadministrateur --> FR4
-Administrateur_de_compte_client --> FR4
-Utilisateur_final --> FR4
-Manager_direct --> FR4
-Comité_de_validation --> FR4
-usecase "Documentation validation process" as FR5
-Superadministrateur --> FR5
-Administrateur_de_compte_client --> FR5
-Utilisateur_final --> FR5
-Manager_direct --> FR5
-Comité_de_validation --> FR5
-usecase "Migration des données existantes" as FR6
-Superadministrateur --> FR6
-Administrateur_de_compte_client --> FR6
-Utilisateur_final --> FR6
-Manager_direct --> FR6
-Comité_de_validation --> FR6
-usecase "Développement du premier loup de fonctionnalité" as FR7
-Superadministrateur --> FR7
-Administrateur_de_compte_client --> FR7
-Utilisateur_final --> FR7
-Manager_direct --> FR7
-Comité_de_validation --> FR7
+left to right direction
+
+actor "Superadministrateur" as superadmin
+actor "Administrateur de compte client" as adminclient
+actor "Utilisateur final" as userfinal
+actor "Manager direct" as managerdirect
+actor "Comité de validation" as committeevalidation
+
+package "Tableau de bord" {
+  usecase "Affichage du tableau de bord pour l'administrateur" as FR1
+}
+
+package "Cycle de vie des documents" {
+  usecase "Gestion des versions des documents" as FR2
+  usecase "Gestion des documents" as FR6
+}
+
+package "Rapports de gestion" {
+  usecase "Affichage des rapports de gestion" as FR3
+}
+
+package "Recherche avancée" {
+  usecase "Recherche avancée des documents" as FR4
+}
+
+package "Documentation validation process" {
+  usecase "Validation des documents" as FR5
+}
+
+superadmin --> FR1
+adminclient --> FR2
+managerdirect --> FR6
+userfinal --> FR2, FR6
+committeevalidation --> FR3, FR5
+
+FR1 ..> FR2 : <<include>>
+FR2 ..> FR6 : <<extend>>
+FR3 ..> FR5 : <<extend>>
+
 @enduml

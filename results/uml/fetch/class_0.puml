@@ -1,0 +1,85 @@
+@startuml
+class Users {
+  id:int
+  username:string
+  password:string
+  email:string
+}
+
+class CloudEnvironment {
+  id:int
+  name:string
+  description:string
+  url:string
+}
+
+class UtilisateurFinal {
+  id:int
+  name:string
+  description:string
+  url:string
+}
+
+class ProprietaireDonnees {
+  id:int
+  name:string
+  description:string
+  url:string
+}
+
+class FR13 {
+  id:int
+  spatial_extent_name:string
+}
+
+class FR14 {
+  id:int
+  topic_categories:string
+}
+
+class FR15 {
+  id:int
+  inspire_themes:string
+}
+
+class FR16 {
+  id:int
+  gemet_keywords:string
+}
+
+class FR17 {
+  id:int
+  other_keywords:string
+}
+
+class FR18 {
+  id:int
+  md_contact:string
+}
+
+class FR19 {
+  id:int
+  lineage:string
+}
+
+class FR20 {
+  id:int
+  use_condition:string
+}
+
+Users "1" -- "0..*" CloudEnvironment : has_many
+CloudEnvironment "1" -- "0..*" UtilisateurFinal : has_one
+UtilisateurFinal "1" -- "0..*" ProprietaireDonnees : has_one
+FR13 "1" -- "0..*" Users : belongs_to
+FR14 "1" -- "0..*" Users : belongs_to
+FR15 "1" -- "0..*" Users : belongs_to
+FR16 "1" -- "0..*" Users : belongs_to
+FR17 "1" -- "0..*" Users : belongs_to
+FR18 "1" -- "0..*" Users : belongs_to
+FR19 "1" -- "0..*" Users : belongs_to
+FR20 "1" -- "0..*" Users : belongs_to
+note right of Users
+  Description pertinente
+end note
+
+@enduml

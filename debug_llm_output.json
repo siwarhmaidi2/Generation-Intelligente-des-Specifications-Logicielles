@@ -1,0 +1,344 @@
+
+{
+"entities": [
+{
+"name": "Document",
+"attributes": ["id", "title", "content", "status", "created\_at", "updated\_at"],
+"relations": ["User", "ValidationProcess"]
+},
+{
+"name": "User",
+"attributes": ["id", "username", "email", "password", "role"],
+"relations": ["Document", "ValidationProcess"]
+},
+{
+"name": "ValidationProcess",
+"attributes": ["id", "status"],
+"relations": ["Document"]
+}
+],
+"use\_cases": [
+{
+"name": "CreateDocument",
+"actors": ["User"],
+"preconditions": [],
+"postconditions": [],
+"flow": [
+{
+"type": "create",
+"object": "Document",
+"attributes": ["title", "content", "status", "created\_at", "updated\_at"]
+}
+]
+},
+{
+"name": "EditDocument",
+"actors": ["User"],
+"preconditions": ["Document exists"],
+"postconditions": [],
+"flow": [
+{
+"type": "update",
+"object": "Document",
+"attributes": ["title", "content", "status", "updated\_at"]
+}
+]
+},
+{
+"name": "DeleteDocument",
+"actors": ["User"],
+"preconditions": ["Document exists"],
+"postconditions": [],
+"flow": [
+{
+"type": "delete",
+"object": "Document"
+}
+]
+},
+{
+"name": "ViewDocument",
+"actors": ["User"],
+"preconditions": ["Document exists"],
+"postconditions": [],
+"flow": [
+{
+"type": "view",
+"object": "Document"
+}
+]
+},
+{
+"name": "SearchDocuments",
+"actors": ["User"],
+"preconditions": [],
+"postconditions": [],
+"flow": [
+{
+"type": "search",
+"object": "Document",
+"attributes": ["title", "content"]
+}
+]
+},
+{
+"name": "ValidateDocument",
+"actors": ["ValidationProcess"],
+"preconditions": ["Document exists", "Status is 'pending'"],
+"postconditions": ["Status is updated"],
+"flow": [
+{
+"type": "validate",
+"object": "Document"
+}
+]
+},
+{
+"name": "ApproveDocument",
+"actors": ["Manager direct"],
+"preconditions": ["ValidationProcess exists", "Status is 'pending'"],
+"postconditions": ["Status is updated"],
+"flow": [
+{
+"type": "approve",
+"object": "ValidationProcess"
+}
+]
+},
+{
+"name": "RejectDocument",
+"actors": ["Comité de validation"],
+"preconditions": ["ValidationProcess exists", "Status is 'pending'"],
+"postconditions": ["Status is updated"],
+"flow": [
+{
+"type": "reject",
+"object": "ValidationProcess"
+}
+]
+},
+{
+"name": "ViewTableauBord",
+"actors": ["Superadministrateur"],
+"preconditions": [],
+"postconditions": [],
+"flow": [
+{
+"type": "view",
+"object": "Document",
+"attributes": ["title", "content", "status"]
+}
+]
+},
+{
+"name": "CreateTableauBord",
+"actors": ["Superadministrateur"],
+"preconditions": [],
+"postconditions": [],
+"flow": [
+{
+"type": "create",
+"object": "Document",
+"attributes": ["title", "content", "status"]
+}
+]
+},
+{
+"name": "EditTableauBord",
+"actors": ["Superadministrateur"],
+"preconditions": ["Document exists"],
+"postconditions": [],
+"flow": [
+{
+"type": "update",
+"object": "Document",
+"attributes": ["title", "content", "status"]
+}
+]
+},
+{
+"name": "DeleteTableauBord",
+"actors": ["Superadministrateur"],
+"preconditions": ["Document exists"],
+"postconditions": [],
+"flow": [
+{
+"type": "delete",
+"object": "Document"
+}
+]
+},
+{
+"name": "ViewTableauBord",
+"actors": ["Superadministrateur"],
+"preconditions": [],
+"postconditions": [],
+"flow": [
+{
+"type": "view",
+"object": "Document",
+"attributes": ["title", "content", "status"]
+}
+]
+},
+{
+"name": "CreateTableauBord",
+"actors": ["Superadministrateur"],
+"preconditions": [],
+"postconditions": [],
+"flow": [
+{
+"type": "create",
+"object": "Document",
+"attributes": ["title", "content", "status"]
+}
+]
+},
+{
+"name": "EditTableauBord",
+"actors": ["Superadministrateur"],
+"preconditions": ["Document exists"],
+"postconditions": [],
+"flow": [
+{
+"type": "update",
+"object": "Document",
+"attributes": ["title", "content", "status"]
+}
+]
+},
+{
+"name": "DeleteTableauBord",
+"actors": ["Superadministrateur"],
+"preconditions": ["Document exists"],
+"postconditions": [],
+"flow": [
+{
+"type": "delete",
+"object": "Document"
+}
+]
+},
+{
+"name": "ViewTableauBord",
+"actors": ["Superadministrateur"],
+"preconditions": [],
+"postconditions": [],
+"flow": [
+{
+"type": "view",
+"object": "Document",
+"attributes": ["title", "content", "status"]
+}
+]
+},
+{
+"name": "CreateTableauBord",
+"actors": ["Superadministrateur"],
+"preconditions": [],
+"postconditions": [],
+"flow": [
+{
+"type": "create",
+"object": "Document",
+"attributes": ["title", "content", "status"]
+}
+]
+},
+{
+"name": "EditTableauBord",
+"actors": ["Superadministrateur"],
+"preconditions": ["Document exists"],
+"postconditions": [],
+"flow": [
+{
+"type": "update",
+"object": "Document",
+"attributes": ["title", "content", "status"]
+}
+]
+},
+{
+"name": "DeleteTableauBord",
+"actors": ["Superadministrateur"],
+"preconditions": ["Document exists"],
+"postconditions": [],
+"flow": [
+{
+"type": "delete",
+"object": "Document"
+}
+]
+},
+{
+"name": "ViewTableauBord",
+"actors": ["Superadministrateur"],
+"preconditions": [],
+"postconditions": [],
+"flow": [
+{
+"type": "view",
+"object": "Document",
+"attributes": ["title", "content", "status"]
+}
+]
+},
+{
+"name": "CreateTableauBord",
+"actors": ["Superadministrateur"],
+"preconditions": [],
+"postconditions": [],
+"flow": [
+{
+"type": "create",
+"object": "Document",
+"attributes": ["title", "content", "status"]
+}
+]
+},
+{
+"name": "EditTableauBord",
+"actors": ["Superadministrateur"],
+"preconditions": ["Document exists"],
+"postconditions": [],
+"flow": [
+{
+"type": "update",
+"object": "Document",
+"attributes": ["title", "content", "status"]
+}
+]
+},
+{
+"name": "DeleteTableauBord",
+"actors": ["Superadministrateur"],
+"preconditions": ["Document exists"],
+"postconditions": [],
+"flow": [
+{
+"type": "delete",
+"object": "Document"
+}
+]
+},
+{
+"name": "ViewTableauBord",
+"actors": ["Superadministrateur"],
+"preconditions": [],
+"postconditions": [],
+"flow": [
+{
+"type": "view",
+"object": "Document",
+"attributes": ["title", "content", "status"]
+}
+]
+},
+{
+"name": "CreateTableauBord",
+"actors": ["Superadministrateur"],
+"preconditions": [],
+"postconditions": [],
+"flow": [
+{
+"type

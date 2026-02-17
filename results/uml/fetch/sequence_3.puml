@@ -1,0 +1,38 @@
+@startuml
+actor "Users" as actor
+participant "CloudEnvironment" as entity1
+participant "UtilisateurFinal" as entity2
+participant "ProprietaireDonnees" as entity3
+participant "AdministrateurBaseDeDonnees" as entity4
+participant "FR13" as entity5
+participant "FR14" as entity6
+participant "FR15" as entity7
+participant "FR16" as entity8
+participant "FR17" as entity9
+participant "FR18" as entity10
+participant "FR19" as entity11
+participant "FR20" as entity12
+participant "FR21" as entity13
+participant "FR22" as entity14
+participant "FR23" as entity15
+participant "FR24" as entity16
+participant "FR25" as entity17
+
+actor -> entity1: CreateService()
+activate entity1
+
+entity1 -> entity2: StoreData()
+activate entity2
+
+entity2 --> entity3: ExtractData()
+deactivate entity2
+
+alt condition
+  entity3 --> actor: Success()
+else
+  entity3 --> actor: Error()
+end
+
+deactivate entity3
+
+@enduml

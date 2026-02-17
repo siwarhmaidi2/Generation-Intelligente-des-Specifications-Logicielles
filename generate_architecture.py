@@ -53,6 +53,7 @@ def main() -> None:
             continue
 
         arch_analysis = agent.generate_architecture(requirements)
+    
         
         with open(out_file, "w", encoding="utf-8") as f:
             f.write(arch_analysis.model_dump_json(indent=2, ensure_ascii=False, exclude={"raw_model_output"}))

@@ -1,26 +1,105 @@
 @startuml
 class Document {
-  id: string
+  id: int
   title: string
-  content: string
-  status: string
-  created\_at: string
-  updated\_at: string
+  content: text
+  created_at: datetime
+  modified_at: datetime
 }
-class User {
-  id: string
-  username: string
+
+class Client {
+  id: int
+  name: string
   email: string
-  password: string
-  role: string
+  created_at: datetime
+  modified_at: datetime
 }
-class ValidationProcess {
-  id: string
+
+class ManagerDirect {
+  id: int
+  name: string
+  email: string
+  created_at: datetime
+  modified_at: datetime
+}
+
+class ComiteValidation {
+  id: int
+  name: string
+  created_at: datetime
+  modified_at: datetime
+}
+
+class Version {
+  id: int
+  document_id: int
   status: string
+  created_at: datetime
+  modified_at: datetime
 }
-Document --> User
-Document --> ValidationProcess
-User --> Document
-User --> ValidationProcess
-ValidationProcess --> Document
+
+class ReportGestion {
+  id: int
+  version_id: int
+  content: text
+  created_at: datetime
+  modified_at: datetime
+}
+
+class ReportValidation {
+  id: int
+  report_gestion_id: int
+  status: string
+  created_at: datetime
+  modified_at: datetime
+}
+
+class Validation {
+  id: int
+  report_validation_id: int
+  status: string
+  created_at: datetime
+  modified_at: datetime
+}
+
+Document "1" -- "0..*" Version : document_has_versions >
+Client "1" -- "0..*" ManagerDirect : client_has_manager_direct >
+ManagerDirect "1" -- "0..1" ComiteValidation : manager_direct_belongs_to_comite_validation >
+ComiteValidation "1" -- "0..1" Client : comite_validation_belongs_to_client >
+Version "1" -- "0..*" ReportGestion : version_has_report_gestions >
+ReportGestion "1" -- "0..*" ReportValidation : report_gestion_has_report_validations >
+ReportValidation "1" -- "0..*" Validation : report_validation_has_validations >
+
+note right of Document
+  Document principal
+end note
+
+note right of Client
+  Client principal
+end note
+
+note right of ManagerDirect
+  Manager direct
+end note
+
+note right of ComiteValidation
+  Comité de validation
+end note
+
+note right of Version
+  Version
+end note
+
+note right of ReportGestion
+  Rapport de gestion
+end note
+
+note right of ReportValidation
+  Rapport de validation
+end note
+
+note right of Validation
+  Validation
+end note
+
 @enduml
