@@ -1,4 +1,0 @@
-@startuml
-Utilisateur_final -> Tâche: Création rapide d'une tâche en moins de 2 clics
-Tâche --> Utilisateur_final: response
-@enduml

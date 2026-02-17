@@ -1,13 +1,33 @@
 @startuml
-class Tâche {
-  id: string
-  nom: string
-  description: string
-  catégorie: string
-  statut: string
-  délai: string
-  budget: string
+class Task {
+  id: int
+  title: string
+  description: text
+  category: string
+  status: enum(TO_DO, IN_PROGRESS, DONE)
+  created_at: datetime
+  updated_at: datetime
 }
-Tâche --> Utilisateur
-Tâche --> Notifications
+
+class Category {
+  id: int
+  name: string
+}
+
+class Notification {
+  id: int
+  message: text
+}
+
+class User {
+  id: int
+  email: string
+  password: string
+}
+
+Task "1" -- "0..*" Category : belongs_to
+Task "1" -- "0..*" Notification : has_many
+User "1" -- "0..*" Task : belongs_to
+User "1" -- "0..*" Category : belongs_to
+User "1" -- "0..*" Notification : has_many
 @enduml

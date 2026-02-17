@@ -1,11 +1,21 @@
 import asyncio
 import json
 import re
+import os
+import base64
+import zlib
 from typing import Dict, Any, List, Optional
 
 from pydantic import BaseModel, Field
 from agent_analyst.llm_client import LLMClient, ChatMessage
 from .prompts import ARCHITECT_SYSTEM_PROMPT
+
+# Pour la génération d'images PlantUML
+try:
+    import requests
+    PLANTUML_AVAILABLE = True
+except ImportError:
+    PLANTUML_AVAILABLE = False
 
 # =====================================================
 # Schemas
@@ -15,6 +25,8 @@ class UMLDiagram(BaseModel):
     diagram_type: str
     content: str
     description: Optional[str] = None
+    image_base64: Optional[str] = None
+    image_url: Optional[str] = None
 
 class Entity(BaseModel):
     name: str
@@ -46,13 +58,175 @@ class ArchitecturalAnalysis(BaseModel):
     raw_model_output: Optional[dict] = None
 
 # =====================================================
+# PlantUML Image Generator
+# =====================================================
+
+class PlantUMLImageGenerator:
+    """Génère des images à partir de code PlantUML"""
+    
+    PLANTUML_SERVERS = [
+        "http://www.plantuml.com/plantuml",
+        "https://kroki.io/plantuml",
+    ]
+    
+    @staticmethod
+    def _encode_plantuml(plantuml_text: str) -> str:
+        """
+        Encode le texte PlantUML en utilisant l'algorithme DEFLATE standard de PlantUML.
+        Compatible avec les serveurs PlantUML officiels.
+        """
+        # 1. Encoder en UTF-8
+        utf8_bytes = plantuml_text.encode('utf-8')
+        
+        # 2. Compression DEFLATE (niveau 9)
+        compressed = zlib.compress(utf8_bytes, 9)[2:-4]  # Enlever les headers zlib
+        
+        # 3. Encodage base64 personnalisé PlantUML
+        plantuml_alphabet = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz-_'
+        
+        def encode3bytes(b1, b2, b3):
+            """Encode 3 octets en 4 caractères"""
+            c1 = b1 >> 2
+            c2 = ((b1 & 0x3) << 4) | (b2 >> 4)
+            c3 = ((b2 & 0xF) << 2) | (b3 >> 6)
+            c4 = b3 & 0x3F
+            return (plantuml_alphabet[c1] + plantuml_alphabet[c2] + 
+                    plantuml_alphabet[c3] + plantuml_alphabet[c4])
+        
+        result = []
+        i = 0
+        while i < len(compressed):
+            if i + 2 < len(compressed):
+                result.append(encode3bytes(compressed[i], compressed[i+1], compressed[i+2]))
+                i += 3
+            elif i + 1 < len(compressed):
+                result.append(encode3bytes(compressed[i], compressed[i+1], 0)[:3])
+                i += 2
+            else:
+                result.append(encode3bytes(compressed[i], 0, 0)[:2])
+                i += 1
+        
+        return ''.join(result)
+    
+    @classmethod
+    def generate_image(cls, plantuml_code: str, output_format: str = "png") -> Optional[bytes]:
+        """
+        Génère une image à partir du code PlantUML
+        
+        Args:
+            plantuml_code: Code PlantUML (@startuml ... @enduml)
+            output_format: Format de sortie (png, svg)
+            
+        Returns:
+            Bytes de l'image ou None si échec
+        """
+        if not PLANTUML_AVAILABLE:
+            print("Warning: requests library not available for PlantUML image generation")
+            return None
+        
+        # Nettoyer le code PlantUML
+        clean_code = plantuml_code.strip()
+        if not clean_code.startswith('@startuml'):
+            clean_code = '@startuml\n' + clean_code
+        if not clean_code.endswith('@enduml'):
+            clean_code = clean_code + '\n@enduml'
+        
+        # Encoder le code
+        encoded = cls._encode_plantuml(clean_code)
+        
+        # Essayer avec chaque serveur
+        for server in cls.PLANTUML_SERVERS:
+            try:
+                # Utiliser l'API correcte selon le serveur
+                if "kroki.io" in server:
+                    # Kroki utilise une API différente
+                    url = f"{server}/{output_format}"
+                    response = requests.post(
+                        url,
+                        data=clean_code.encode('utf-8'),
+                        headers={'Content-Type': 'text/plain'},
+                        timeout=15
+                    )
+                else:
+                    # PlantUML standard
+                    url = f"{server}/{output_format}/{encoded}"
+                    response = requests.get(url, timeout=15)
+                
+                if response.status_code == 200:
+                    # Vérifier que ce n'est pas une page d'erreur
+                    content_type = response.headers.get('Content-Type', '')
+                    if output_format == 'png' and 'image/png' in content_type:
+                        return response.content
+                    elif output_format == 'svg' and ('image/svg' in content_type or 'text/plain' in content_type):
+                        return response.content
+                    elif len(response.content) > 1000:  # Probablement une vraie image
+                        return response.content
+                    
+            except Exception as e:
+                print(f"PlantUML server {server} failed: {e}")
+                continue
+        
+        # Dernier recours : essayer avec l'API POST de plantuml.com
+        try:
+            url = "http://www.plantuml.com/plantuml/form"
+            response = requests.post(
+                url,
+                data={'text': clean_code},
+                timeout=15,
+                allow_redirects=True
+            )
+            if response.status_code == 200 and len(response.content) > 1000:
+                return response.content
+        except Exception as e:
+            print(f"PlantUML POST API failed: {e}")
+        
+        print("All PlantUML servers failed")
+        return None
+    
+    @classmethod
+    def generate_base64_image(cls, plantuml_code: str, output_format: str = "png") -> Optional[str]:
+        """
+        Génère une image en base64 à partir du code PlantUML
+        
+        Returns:
+            Image encodée en base64 ou None
+        """
+        image_bytes = cls.generate_image(plantuml_code, output_format)
+        if image_bytes:
+            return base64.b64encode(image_bytes).decode('utf-8')
+        return None
+    
+    @classmethod
+    def save_image(cls, plantuml_code: str, filepath: str, output_format: str = "png") -> bool:
+        """
+        Sauvegarde l'image dans un fichier
+        
+        Returns:
+            True si succès, False sinon
+        """
+        image_bytes = cls.generate_image(plantuml_code, output_format)
+        if image_bytes:
+            try:
+                os.makedirs(os.path.dirname(filepath), exist_ok=True)
+                with open(filepath, 'wb') as f:
+                    f.write(image_bytes)
+                return True
+            except Exception as e:
+                print(f"Failed to save image: {e}")
+                return False
+        return False
+
+# =====================================================
 # Agent Architect
 # =====================================================
 
 class AgentArchitect:
 
-    def __init__(self, llm_client: Optional[LLMClient] = None):
+    def __init__(self, llm_client: Optional[LLMClient] = None, generate_images: bool = True, image_output_dir: Optional[str] = None):
         self.llm_client = llm_client or LLMClient()
+        self.generate_images = generate_images
+        self.image_output_dir = image_output_dir or "C:/Users/hmaid/OneDrive/Bureau/Stage PFE - Numeryx/uml_diagrams"
+        self.image_generator = PlantUMLImageGenerator()
 
     # --------------------------
     # JSON Cleaning
@@ -78,6 +252,38 @@ class AgentArchitect:
         except json.JSONDecodeError:
             cleaned = AgentArchitect._clean_json(text)
             return json.loads(cleaned)
+
+    # --------------------------
+    # Image Generation Helper
+    # --------------------------
+
+    def _add_image_to_diagram(self, diagram: UMLDiagram, diagram_index: int) -> UMLDiagram:
+        """Ajoute l'image au diagramme UML"""
+        if not self.generate_images:
+            return diagram
+        
+        try:
+            # Générer l'image en base64
+            image_base64 = self.image_generator.generate_base64_image(diagram.content, "png")
+            
+            if image_base64:
+                diagram.image_base64 = image_base64
+                
+                # Optionnellement sauvegarder dans un fichier
+                if self.image_output_dir:
+                    filename = f"{diagram.diagram_type}_{diagram_index}.png"
+                    filepath = os.path.join(self.image_output_dir, filename)
+                    
+                    if self.image_generator.save_image(diagram.content, filepath, "png"):
+                        diagram.image_url = filepath
+                        print(f"✓ Image sauvegardée: {filepath}")
+            else:
+                print(f"✗ Échec génération image pour {diagram.diagram_type}")
+                
+        except Exception as e:
+            print(f"✗ Erreur lors de la génération d'image: {e}")
+        
+        return diagram
 
     # --------------------------
     # Entity Detection via LLM
@@ -202,40 +408,58 @@ Retourne UNIQUEMENT le JSON, sans texte avant ou après.
         
         diagrams = []
         
+        print("Génération des diagrammes UML...")
+        
         # 1. Diagramme de classes
+        print("  → Diagramme de classes...")
         class_diagram = await self._generate_class_diagram_llm(entities_data, requirements_json)
-        diagrams.append(UMLDiagram(
+        class_diagram_obj = UMLDiagram(
             diagram_type="class",
             content=class_diagram,
             description="Diagramme de classes du système"
-        ))
+        )
+        class_diagram_obj = self._add_image_to_diagram(class_diagram_obj, 0)
+        diagrams.append(class_diagram_obj)
         
         # 2. Diagramme de cas d'utilisation
+        print("  → Diagramme de cas d'utilisation...")
         usecase_diagram = await self._generate_usecase_diagram_llm(requirements_json, entities_data)
-        diagrams.append(UMLDiagram(
+        usecase_diagram_obj = UMLDiagram(
             diagram_type="use_case",
             content=usecase_diagram,
             description="Diagramme des cas d'utilisation"
-        ))
+        )
+        usecase_diagram_obj = self._add_image_to_diagram(usecase_diagram_obj, 1)
+        diagrams.append(usecase_diagram_obj)
         
         # 3. Diagramme d'activité
+        print("  → Diagramme d'activité...")
         activity_diagram = await self._generate_activity_diagram_llm(requirements_json, entities_data)
-        diagrams.append(UMLDiagram(
+        activity_diagram_obj = UMLDiagram(
             diagram_type="activity",
             content=activity_diagram,
             description="Diagramme d'activité principal"
-        ))
+        )
+        activity_diagram_obj = self._add_image_to_diagram(activity_diagram_obj, 2)
+        diagrams.append(activity_diagram_obj)
         
         # 4. Diagramme de séquence
+        print("  → Diagramme de séquence...")
         sequence_diagram = await self._generate_sequence_diagram_llm(requirements_json, entities_data)
         if sequence_diagram:
-            diagrams.append(UMLDiagram(
+            sequence_diagram_obj = UMLDiagram(
                 diagram_type="sequence",
                 content=sequence_diagram,
                 description="Diagramme de séquence des flux principaux"
-            ))
+            )
+            sequence_diagram_obj = self._add_image_to_diagram(sequence_diagram_obj, 3)
+            diagrams.append(sequence_diagram_obj)
+        
+        print("✓ Génération des diagrammes terminée")
         
         return diagrams
+
+    # [Le reste du code reste identique - je continue avec les méthodes de génération UML...]
 
     async def _generate_class_diagram_llm(self, entities_data: List[Dict], requirements_json: Dict[str, Any]) -> str:
         """Génère le diagramme de classes via LLM"""
@@ -454,7 +678,6 @@ Retourne UNIQUEMENT le code PlantUML.
         if not functional_reqs:
             return None
         
-        # Prendre la première exigence comme flux principal
         main_flow = functional_reqs[0] if functional_reqs else {}
         
         prompt = f"""
@@ -594,17 +817,14 @@ Retourne UNIQUEMENT le code PlantUML.
         
         diagram += "\n"
         
-        # Grouper par thème détecté
         grouped_uc = {}
         for i, fr in enumerate(functional_reqs):
             desc = fr.get("description", "Use case")
             uc_id = fr.get("id", f"UC{i+1}")
             
-            # Essayer de détecter un thème dans la description
             theme = "Fonctionnalités principales"
             desc_lower = desc.lower()
             
-            # Chercher des mots-clés génériques de groupement
             for keyword in ["gestion", "administration", "rapport", "recherche", "validation", "migration"]:
                 if keyword in desc_lower:
                     theme = keyword.capitalize()
@@ -622,7 +842,6 @@ Retourne UNIQUEMENT le code PlantUML.
         
         diagram += "\n"
         
-        # Associations basées sur les rôles et responsabilités
         for fr in functional_reqs:
             uc_id = fr.get("id", "")
             desc = fr.get("description", "").lower()
@@ -633,7 +852,6 @@ Retourne UNIQUEMENT le code PlantUML.
                 role = actor.get("role", "").lower()
                 responsibilities = [r.lower() for r in actor.get("responsibilities", [])]
                 
-                # Match si le nom de l'acteur, son rôle ou ses responsabilités apparaissent
                 if (actor_name.lower() in desc or 
                     role in desc or 
                     any(resp in desc for resp in responsibilities)):
@@ -745,7 +963,6 @@ Retourne le JSON uniquement.
                 justification=data.get("justification", f"Stack adaptée à un score de {complexity.technical_score}/10")
             )
         except Exception:
-            # Fallback intelligent basé uniquement sur le score
             if complexity.technical_score > 7:
                 return TechStack(
                     frontend=["React", "TypeScript", "Material-UI", "Redux Toolkit"],
@@ -791,7 +1008,6 @@ Retourne le JSON uniquement.
         
         entity_names = {e.name for e in entities}
         
-        # Vérifier les relations invalides
         for entity in entities:
             for rel in entity.relations:
                 if isinstance(rel, dict):
@@ -799,12 +1015,10 @@ Retourne le JSON uniquement.
                     if target and target not in entity_names:
                         issues.append(f"Relation invalide : {entity.name} -> {target} (entité cible introuvable)")
         
-        # Vérifier la couverture des exigences
         functional_reqs = requirements_json.get("functional_requirements", [])
         if functional_reqs and len(entities) < max(2, len(functional_reqs) / 5):
             issues.append("Nombre d'entités potentiellement insuffisant par rapport aux exigences fonctionnelles")
         
-        # Vérifier les acteurs
         actors = requirements_json.get("actors", [])
         if not actors:
             issues.append("Aucun acteur défini dans le système")
@@ -820,23 +1034,48 @@ Retourne le JSON uniquement.
     async def a_generate_architecture(self, requirements_json: Dict[str, Any]) -> ArchitecturalAnalysis:
         """Génération complète de l'architecture"""
         
+        print("\n" + "="*60)
+        print("GÉNÉRATION DE L'ARCHITECTURE")
+        print("="*60)
+        
         # 1. Détection des entités métier
+        print("\n1. Détection des entités métier...")
         entities = await self.detect_entities_with_llm(requirements_json)
+        print(f"   ✓ {len(entities)} entités détectées")
         
         # 2. Calcul de la complexité
+        print("\n2. Calcul de la complexité...")
         complexity = self.compute_complexity(requirements_json, entities)
+        print(f"   ✓ Score technique: {complexity.technical_score}/10")
+        print(f"   ✓ Estimation: {complexity.dev_days_estimate} jours")
         
         # 3. Génération de la stack technique
+        print("\n3. Génération de la stack technique...")
         tech_stack = await self.generate_dynamic_stack_with_llm(requirements_json, complexity)
+        print(f"   ✓ Frontend: {', '.join(tech_stack.frontend[:3])}")
+        print(f"   ✓ Backend: {', '.join(tech_stack.backend[:3])}")
         
-        # 4. Génération des diagrammes UML cohérents
+        # 4. Génération des diagrammes UML (avec images)
+        print("\n4. Génération des diagrammes UML...")
         uml_diagrams = await self.generate_uml_diagrams(entities, requirements_json)
+        print(f"   ✓ {len(uml_diagrams)} diagrammes générés")
         
         # 5. Génération du résumé
+        print("\n5. Génération du résumé...")
         summary = self.generate_summary(requirements_json, entities, complexity)
+        print("   ✓ Résumé généré")
         
         # 6. Validation
+        print("\n6. Validation de l'architecture...")
         consistency = self.validate_architecture(entities, requirements_json)
+        if consistency.is_consistent:
+            print("   ✓ Architecture cohérente")
+        else:
+            print(f"   ⚠ {len(consistency.issues)} problème(s) détecté(s)")
+        
+        print("\n" + "="*60)
+        print("✓ GÉNÉRATION TERMINÉE")
+        print("="*60 + "\n")
         
         return ArchitecturalAnalysis(
             summary=summary,

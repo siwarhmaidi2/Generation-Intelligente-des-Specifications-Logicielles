@@ -1,0 +1,20 @@
+@startuml
+|User|
+start
+
+:Create Task;
+
+if (Task Category = "Category1") then (yes)
+  :Activity for Category1;
+  
+  |Notification|
+  :Send Notification;
+else (no)
+  :Activity for Category2;
+endif
+
+|User|
+:Export List;
+
+stop
+@enduml

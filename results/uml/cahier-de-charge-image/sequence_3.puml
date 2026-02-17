@@ -1,0 +1,27 @@
+@startuml
+actor "User" as actor
+participant "Task" as entity1
+participant "Category" as entity2
+participant "Notification" as entity3
+participant "System" as entity4
+
+actor -> entity1: createTask()
+activate entity1
+
+entity1 -> entity2: getCategory()
+activate entity2
+
+entity2 -> entity3: sendNotification()
+activate entity3
+
+entity3 --> entity1: taskCreated()
+deactivate entity3
+
+alt condition
+  entity1 --> actor: success
+else
+  entity1 --> actor: error
+end
+
+deactivate entity1
+@enduml
