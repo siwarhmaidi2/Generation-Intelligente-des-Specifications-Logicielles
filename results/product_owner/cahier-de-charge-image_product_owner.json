@@ -1,0 +1,97 @@
+{
+  "vision": "Simplification de la gestion quotidienne des tâches pour les utilisateurs individuels via une application mobile hybride (Flutter) sur OS/Android, avec stockage local uniquement et performance optimisée.",
+  "epics": [
+    {
+      "id": "EPIC1",
+      "name": "Création de l'application",
+      "description": "Développer une application mobile hybride (Flutter) pour la gestion quotidienne des tâches.",
+      "user_stories": [
+        "US1",
+        "US2",
+        "US3"
+      ]
+    }
+  ],
+  "user_stories": [
+    {
+      "id": "US1",
+      "title": "Création d'une nouvelle tâche",
+      "as_a": "Utilisateur final",
+      "i_want": "Pour créer une nouvelle tâche",
+      "so_that": "La tâche soit ajoutée au backlog",
+      "acceptance_criteria": [
+        "Given l'utilisateur est connecté\nWhen il clique sur le bouton 'Créer une tâche'\nThen la nouvelle tâche est créée et ajoutée au backlog"
+      ],
+      "story_points": 3,
+      "priority": "Must",
+      "business_value": 8,
+      "risk": "low",
+      "dependencies": [
+        "US2"
+      ]
+    },
+    {
+      "id": "US2",
+      "title": "Affichage du backlog",
+      "as_a": "Utilisateur final",
+      "i_want": "Pour voir le backlog des tâches",
+      "so_that": "Il puisse planifier ses tâches",
+      "acceptance_criteria": [
+        "Given l'utilisateur est connecté\nWhen il accède au backlog\nThen il voit la liste des tâches"
+      ],
+      "story_points": 5,
+      "priority": "Must",
+      "business_value": 9,
+      "risk": "low",
+      "dependencies": []
+    },
+    {
+      "id": "US3",
+      "title": "Création d'une nouvelle catégorie",
+      "as_a": "Utilisateur final",
+      "i_want": "Pour créer une nouvelle catégorie",
+      "so_that": "La nouvelle catégorie soit ajoutée au backlog",
+      "acceptance_criteria": [
+        "Given l'utilisateur est connecté\nWhen il clique sur le bouton 'Créer une catégorie'\nThen la nouvelle catégorie est créée et ajoutée au backlog"
+      ],
+      "story_points": 3,
+      "priority": "Must",
+      "business_value": 8,
+      "risk": "low",
+      "dependencies": [
+        "US1"
+      ]
+    }
+  ],
+  "sprints": [
+    {
+      "id": "SPRINT1",
+      "user_stories": [
+        "US1",
+        "US3"
+      ],
+      "capacity_points": 6
+    },
+    {
+      "id": "SPRINT2",
+      "user_stories": [
+        "US2"
+      ],
+      "capacity_points": 5
+    }
+  ],
+  "roadmap": [
+    {
+      "quarter": "Q1",
+      "epics": [
+        "EPIC1"
+      ]
+    },
+    {
+      "quarter": "Q2",
+      "epics": [
+        "EPIC1"
+      ]
+    }
+  ]
+}

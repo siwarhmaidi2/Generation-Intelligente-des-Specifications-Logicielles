@@ -1,0 +1,159 @@
+{
+  "vision": "Plateforme pour gestion des documents",
+  "epics": [
+    {
+      "id": "EPIC1",
+      "name": "Tableau de bord et fonctionnalités administrateur",
+      "description": "Tableau de bord pour administrateur, cycle de vie des documents, rapports de gestion et recherche avancée.",
+      "user_stories": [
+        "US1",
+        "US2",
+        "US3"
+      ]
+    },
+    {
+      "id": "EPIC2",
+      "name": "Documentation validation process",
+      "description": "Validation process pour la documentation.",
+      "user_stories": [
+        "US4",
+        "US5",
+        "US6"
+      ]
+    }
+  ],
+  "user_stories": [
+    {
+      "id": "US1",
+      "title": "Tableau de bord pour administrateur",
+      "as_a": "Superadministrateur",
+      "i_want": "Accéder au tableau de bord",
+      "so_that": "Visualiser les données et effectuer des actions sur la plateforme",
+      "acceptance_criteria": [
+        "Given l'accès au tableau de bord When l'utilisateur clique sur un bouton Then le tableau de bord affiche les données correspondantes"
+      ],
+      "story_points": 5,
+      "priority": "Must",
+      "business_value": 8,
+      "risk": "low",
+      "dependencies": [
+        "US2"
+      ]
+    },
+    {
+      "id": "US2",
+      "title": "Cycle de vie des documents",
+      "as_a": "Superadministrateur",
+      "i_want": "Gérer les différents états des documents",
+      "so_that": "Assurer la gestion des documents sur la plateforme",
+      "acceptance_criteria": [
+        "Given l'accès au tableau de bord When l'utilisateur clique sur un bouton Then le tableau de bord affiche les différents états des documents"
+      ],
+      "story_points": 3,
+      "priority": "Must",
+      "business_value": 6,
+      "risk": "low",
+      "dependencies": []
+    },
+    {
+      "id": "US3",
+      "title": "Rapports de gestion des documents",
+      "as_a": "Superadministrateur",
+      "i_want": "Gérer les rapports de gestion des documents",
+      "so_that": "Assurer la gestion des documents sur la plateforme",
+      "acceptance_criteria": [
+        "Given l'accès au tableau de bord When l'utilisateur clique sur un bouton Then le tableau de bord affiche les rapports de gestion des documents"
+      ],
+      "story_points": 2,
+      "priority": "Should",
+      "business_value": 4,
+      "risk": "low",
+      "dependencies": [
+        "US1"
+      ]
+    },
+    {
+      "id": "US4",
+      "title": "Validation process pour la documentation",
+      "as_a": "Manager direct",
+      "i_want": "Valider les documents",
+      "so_that": "Assurer la validation des documents sur la plateforme",
+      "acceptance_criteria": [
+        "Given l'accès au tableau de bord When l'utilisateur clique sur un bouton Then le tableau de board affiche les documents à valider"
+      ],
+      "story_points": 8,
+      "priority": "Must",
+      "business_value": 9,
+      "risk": "high",
+      "dependencies": [
+        "US5"
+      ]
+    },
+    {
+      "id": "US5",
+      "title": "Migration des données existantes",
+      "as_a": "Manager direct",
+      "i_want": "Migrer les données existantes vers la plateforme",
+      "so_that": "Assurer la migration des données existantes sur la plateforme",
+      "acceptance_criteria": [
+        "Given l'accès au tableau de bord When l'utilisateur clique sur un bouton Then le tableau de board affiche les documents à migrer"
+      ],
+      "story_points": 13,
+      "priority": "Must",
+      "business_value": 8,
+      "risk": "high",
+      "dependencies": []
+    },
+    {
+      "id": "US6",
+      "title": "Développement du premier loup de fonctionnalité",
+      "as_a": "Manager direct",
+      "i_want": "Développer le premier loup de fonctionnalité",
+      "so_that": "Assurer la développement des fonctionnalités sur la plateforme",
+      "acceptance_criteria": [
+        "Given l'accès au tableau de bord When l'utilisateur clique sur un bouton Then le tableau de board affiche les fonctionnalités à développer"
+      ],
+      "story_points": 5,
+      "priority": "Must",
+      "business_value": 7,
+      "risk": "medium",
+      "dependencies": [
+        "US4"
+      ]
+    }
+  ],
+  "sprints": [
+    {
+      "id": "SPRINT1",
+      "user_stories": [
+        "US1",
+        "US2",
+        "US3"
+      ],
+      "capacity_points": 10
+    },
+    {
+      "id": "SPRINT2",
+      "user_stories": [
+        "US4",
+        "US5",
+        "US6"
+      ],
+      "capacity_points": 26
+    }
+  ],
+  "roadmap": [
+    {
+      "quarter": "Q1",
+      "epics": [
+        "EPIC1"
+      ]
+    },
+    {
+      "quarter": "Q2",
+      "epics": [
+        "EPIC2"
+      ]
+    }
+  ]
+}
